@@ -23,6 +23,9 @@ while running:
     # Appliquer l'image de mon Pokémon
     screen.blit(game.player.image, game.player.rect)
 
+    # Appliquer l'image de l'ennemie
+    screen.blit(game.ennemie.image, game.ennemie.rect)
+
     # Mettre à jour l'écran
     pygame.display.flip()
 
