@@ -1,8 +1,8 @@
 class Pokemon:
-    def __innit__(self, name, level, type, max_health, current_health):
-        self.name = name
-        self.level = level
+    def __init__(self, nom, niveau, type, vie, attaque, defense):
+        self.nom = nom
+        self.niveau = niveau
         self.type = type
-        self.max_health = max_health
-        self.current_health = current_health
-
+        self.vie = vie
+        self.attaque = attaque
+        self.defense = defense
