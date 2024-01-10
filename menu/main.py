@@ -1,5 +1,4 @@
 import pygame
-import json
 
 pygame.init()
 
@@ -7,12 +6,20 @@ pygame.init()
 pygame.display.set_caption("Pokemon")
 screen = pygame.display.set_mode((850, 531))
 # Charger votre logo
-logo = pygame.image.load('assets/logopokeball.png')
+logo = pygame.image.load('menu/image/logopokeball.png')
 
 # Définir le logo de la fenêtre
 pygame.display.set_icon(logo)
 # Chargement du fond d'écran du menu
-background_menu = pygame.image.load('assets/pokemon.jpg')
+background_menu = pygame.image.load('menu/image/pokemon.jpg')
+
+# Chargement et lecture de la musique Pokémon
+pygame.mixer.init()  # Initialisation du module mixer pour la musique
+pygame.mixer.music.load('menu/image/pokemon.mp3')  # Chargez votre fichier audio
+pygame.mixer.music.play(-1)  # Jouez la musique en boucle (-1 indique la lecture en boucle)
+
+# Chargement du son du clic sur les boutons
+click_sound = pygame.mixer.Sound('menu/image/son.mp3')  # Chargez votre fichier audio pour le clic
 
 # Couleurs
 WHITE = (255, 255, 255)
@@ -47,6 +54,7 @@ while running:
             # Vérification si le clic de souris est sur l'un des boutons
             for i, rect in enumerate(button_rects):
                 if rect.collidepoint(event.pos):
+                    click_sound.play()  # Jouez le son du clic lorsque le bouton est pressé
                     if i == 0:
                         # Passer de l'écran de menu à l'interface de choix
                         in_menu = False
@@ -65,11 +73,10 @@ while running:
             text_rect = button_text.get_rect(center=rect.center)
             screen.blit(button_text, text_rect)
     elif in_choice:
-        # Importer et exécuter le contenu de choix.py
+        # Appeler la fonction run() de choix.py en passant l'écran
         import choix
-        choix.run(screen)  # Exécutez la fonction run() de choix.py en passant l'écran
+        choix.run(screen)
 
     pygame.display.flip()
 
 pygame.quit()
-
