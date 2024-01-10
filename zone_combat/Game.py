@@ -1,4 +1,3 @@
-import pygame
 from Player import Player
 from Ennemie import Ennemie
 

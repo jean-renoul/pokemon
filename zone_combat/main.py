@@ -1,5 +1,7 @@
 import pygame
 from Game import Game
+from Player import Player
+from Ennemie import Ennemie
 
 pygame.init()
 
