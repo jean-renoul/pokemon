@@ -1,5 +1,4 @@
-from Pokemon import Pokemon
-from Moves import Moves
+import random
 
 
 class Combat:
@@ -92,6 +91,8 @@ class Combat:
 
     def attack(self, pokemon1, pokemon2, move):
         degats = round((2.4 * pokemon1.attaque * move.puissance) / (pokemon2.defense * 50) + 2) * self.calculer_modifier(pokemon1, pokemon2, move)
+        aleatoire = random.randint(-1, 1)
+        degats += aleatoire
         pokemon2.vie -= degats
         if self.calculer_modifier(pokemon1, pokemon2, move) == 2:
             print (f"C'est super efficace !")        
