@@ -59,7 +59,8 @@ while running:
                         # Passer de l'écran de menu à l'interface de choix
                         in_menu = False
                         in_choice = True
-                    # Le reste de votre code pour les autres boutons reste inchangé
+                    elif i == 3:  # Si le bouton "Quitter" est cliqué
+                        running = False  # Cela ferme la boucle principale et quitte le jeu
 
     # Affichage du contenu en fonction de l'état (menu ou choix)
     if in_menu:
@@ -74,8 +75,8 @@ while running:
             screen.blit(button_text, text_rect)
     elif in_choice:
         # Appeler la fonction run() de choix.py en passant l'écran
-        import choix
-        choix.run(screen)
+        import bienvenue
+        bienvenue.run(screen)
 
     pygame.display.flip()
 
