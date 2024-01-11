@@ -1,4 +1,6 @@
 import pygame
+import bienvenue  # Importer le module bienvenue
+import choix  # Importer le module choix
 
 pygame.init()
 
@@ -56,11 +58,15 @@ while running:
                 if rect.collidepoint(event.pos):
                     click_sound.play()  # Jouez le son du clic lorsque le bouton est pressé
                     if i == 0:
-                        # Passer de l'écran de menu à l'interface de choix
+                        # Passer de l'écran de menu à l'interface de bienvenue
                         in_menu = False
-                        in_choice = True
+                        bienvenue.run(screen)  # Appeler la fonction run() de bienvenue.py
                     elif i == 3:  # Si le bouton "Quitter" est cliqué
                         running = False  # Cela ferme la boucle principale et quitte le jeu
+
+        elif event.type == pygame.MOUSEBUTTONDOWN and in_choice:
+            # Appeler la fonction choix() de choix.py
+            choix.choix(screen)
 
     # Affichage du contenu en fonction de l'état (menu ou choix)
     if in_menu:
@@ -73,10 +79,6 @@ while running:
             button_text = font.render(button_texts[i], True, WHITE)
             text_rect = button_text.get_rect(center=rect.center)
             screen.blit(button_text, text_rect)
-    elif in_choice:
-        # Appeler la fonction run() de choix.py en passant l'écran
-        import bienvenue
-        bienvenue.run(screen)
 
     pygame.display.flip()
 

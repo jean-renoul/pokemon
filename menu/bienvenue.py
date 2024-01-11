@@ -1,12 +1,19 @@
 import pygame
+import choix  # Importer le module choix
 
 def run(screen):
     pygame.init()
     pygame.display.set_caption("Pokemon")
+    
+    # Chargement du fond d'écran
     background = pygame.image.load('menu/image/bienvenue.png')
 
-    button_image = pygame.image.load('menu/image/pokeball.png')  # Charger votre image pour le bouton
-    button_rect = button_image.get_rect(center=(screen.get_width() // 2, screen.get_height() // 1.15))  # Positionner un peu plus bas sur l'écran
+    # Chargement de l'image pour le bouton pokeball
+    button_image = pygame.image.load('menu/image/pokeball.png')
+    button_rect = button_image.get_rect(center=(screen.get_width() // 2, screen.get_height() // 1.15))
+
+    # Chargement du son du clic sur les boutons
+    click_sound = pygame.mixer.Sound('menu/image/son.mp3')
 
     running = True
     while running:
@@ -20,5 +27,6 @@ def run(screen):
                 pygame.quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if button_rect.collidepoint(event.pos):
-                    # Faire quelque chose lorsque le bouton est cliqué
-                    print("Le bouton a été cliqué !")  # Exemple : affichage dans la console
+                    click_sound.play()  # Jouez le son du clic
+                    choix.choix(screen)  # Appeler la fonction choix() de choix.py
+                    return
