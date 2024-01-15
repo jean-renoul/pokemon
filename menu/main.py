@@ -28,7 +28,7 @@ WHITE = (255, 255, 255)
 BUTTON_COLOR = (70, 130, 180)  # Couleur des ellipses derrière les boutons (bleu ciel)
 
 # Police de caractères pour le texte du menu
-font = pygame.font.Font(None, 36)
+font = pygame.font.Font('menu/image/Retro Gaming.ttf', 30)
 
 # Textes des boutons
 button_texts = ["Lancer une partie", "Ajouter un Pokémon", "Accéder au Pokédex", "Quitter"]
