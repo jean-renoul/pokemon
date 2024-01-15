@@ -1,10 +1,12 @@
 import pygame
+import pygame.mixer
 import json
 import sys
 
 class Pokedex:
     def __init__(self):
         pygame.init()
+        pygame.mixer.init()
 
         # Charger les données JSON
         with open("pokedex/pokedex.json", "r") as fichier_json:
@@ -16,23 +18,34 @@ class Pokedex:
         self.logo = pygame.image.load('pokedex/assets/logopokeball.png')
         pygame.display.set_icon(self.logo)
 
-        # Chargement de l'image du pokédex.
+        # Chargement de l'image du châssis du pokédex.
         self.image_fond = pygame.image.load("pokedex/assets/pokedex.png")
 
         # Police pour le texte
-        self.police = pygame.font.Font("pokedex/assets/symtext.ttf", 20)
+        self.police = pygame.font.Font("pokedex/assets/Retro Gaming.ttf", 20)
+
+        # Son du clic
+        self.son_clic = pygame.mixer.Sound("pokedex/assets/son.mp3")
 
         # Variables
         self.index_pokemon_courant = 0
-        self.en_menu = True  # Nouvelle variable pour gérer si nous sommes dans le menu
+        self.en_menu = True
 
         # Rectangles pour le bouton "Pokédex"
-        self.rectangles_bouton_pokedex = pygame.Rect(380, 400, 250, 50)
-
-        # Nouvelle variable pour indiquer si le bouton est survolé
+        self.rectangles_bouton_pokedex = pygame.Rect(290, 365, 250, 50)
         self.bouton_pokedex_survole = False
 
-        # Chargez l'image de la Pokéball pour le bouton de retour
+        # Rectangles pour le bouton "Quitter le Pokédex"
+        self.rectangles_bouton_quitter = pygame.Rect(295, 425, 250, 50)
+        self.bouton_quitter_survole = False
+
+        # Chargement de l'image du logo Pokémon dans le menu
+        self.image_logo_pokemon = pygame.image.load("pokedex/assets/pokemon_logo.png")  
+        x_position_logo = 295  
+        y_position_logo = 80  
+        self.rect_logo_pokemon = self.image_logo_pokemon.get_rect(topleft=(x_position_logo, y_position_logo))
+
+        # Chargement de l'image de la Pokéball pour le bouton de retour
         self.image_retour = pygame.image.load("pokedex/assets/pokeball.png")
         self.rect_retour = self.image_retour.get_rect(topleft=(710, 360))
 
@@ -44,36 +57,31 @@ class Pokedex:
         self.afficher_menu()
 
     def afficher_menu(self):
-        # Remplir l'écran avec la couleur blanche
         self.ecran.fill((255, 255, 255))
-
-        # Afficher l'image du fond du Pokédex
         self.ecran.blit(self.image_fond, (0, 0))
 
-        # Réinitialiser la couleur du bouton et supprimer le rectangle rouge
-        self.bouton_pokedex_survole = False
+        # Afficher l'image du logo Pokémon dans le menu
+        self.ecran.blit(self.image_logo_pokemon, self.rect_logo_pokemon)
 
-        # Afficher le bouton "Pokédex"
-        texte_couleur = (255, 0, 0) if self.bouton_pokedex_survole else (255, 255, 255)
-        texte_surface = self.police.render("Accéder au Pokédex", True, texte_couleur)
-        self.ecran.blit(texte_surface, (300, 390))
+        # Bouton "Accéder au Pokédex"
+        texte_couleur_pokedex = (255, 255, 255)
+        texte_surface_pokedex = self.police.render("Accéder au Pokédex", True, texte_couleur_pokedex)
+        self.ecran.blit(texte_surface_pokedex, (290, 365))
 
-        # Rafraîchir l'écran
+        # Bouton "Quitter le Pokédex"
+        texte_couleur_quitter = (255, 255, 255)
+        texte_surface_quitter = self.police.render("Quitter le Pokédex", True, texte_couleur_quitter)
+        self.ecran.blit(texte_surface_quitter, (295, 425))
+
         pygame.display.flip()
 
     def afficher_pokemon_courant(self):
-        # Remplir l'écran avec la couleur blanche
         self.ecran.fill((255, 255, 255))
-
-        # Afficher l'image du fond du Pokédex
         self.ecran.blit(self.image_fond, (0, 0))
-
-        # Afficher l'image du Pokémon actuel
         pokemon_courant = self.donnees_pokemon[self.index_pokemon_courant]
         image_pokemon = pygame.image.load(pokemon_courant["image"])
         self.ecran.blit(image_pokemon, (335, 50))
 
-        # Afficher les informations du Pokémon
         infos_texte = [
             f"Nom: {pokemon_courant['nom']}",
             f"Niveau: {pokemon_courant['niveau']}",
@@ -90,45 +98,22 @@ class Pokedex:
             self.ecran.blit(texte_surface, (300, y_position))
             y_position += 25
 
-        # Afficher le bouton de retour
         self.ecran.blit(self.image_retour, self.rect_retour.move(self.deplacement_x, self.deplacement_y).topleft)
-
-        # Création des rectangles pour les flèches.
         self.rectangles_fleches = [
-            pygame.Rect(164, 355, 25, 34),  # Rectangle pour la flèche vers le haut
-            pygame.Rect(164, 412, 25, 30),  # Rectangle pour la flèche vers le bas
-            pygame.Rect(125, 388, 38, 25),  # Rectangle pour la flèche vers la gauche
-            pygame.Rect(190, 388, 38, 25)   # Rectangle pour la flèche vers la droite
+            pygame.Rect(164, 355, 25, 34),
+            pygame.Rect(164, 412, 25, 30),
+            pygame.Rect(125, 388, 38, 25),
+            pygame.Rect(190, 388, 38, 25)
         ]
 
-        # Dessiner les rectangles pour les flèches
         for rectangle in self.rectangles_fleches:
             pygame.draw.rect(self.ecran, (0, 0, 255), rectangle)
 
-        # Rafraîchir l'écran
-        pygame.display.flip()
-
-    def mettre_a_jour_couleurs_fleches(self, pos_souris):
-        # Réinitialiser la couleur par défaut pour toutes les flèches
-        for rectangle in self.rectangles_fleches:
-            pygame.draw.rect(self.ecran, (0, 0, 255), rectangle)
-
-        # Vérifier si la souris survole les rectangles des flèches directionnelles
-        if self.rectangles_fleches[0].collidepoint(pos_souris):
-            pygame.draw.rect(self.ecran, (255, 0, 0), self.rectangles_fleches[0])  # Changer la couleur pour la flèche vers le haut
-        elif self.rectangles_fleches[1].collidepoint(pos_souris):
-            pygame.draw.rect(self.ecran, (255, 0, 0), self.rectangles_fleches[1])  # Changer la couleur pour la flèche vers le bas
-        elif self.rectangles_fleches[2].collidepoint(pos_souris):
-            pygame.draw.rect(self.ecran, (255, 0, 0), self.rectangles_fleches[2])  # Changer la couleur pour la flèche vers la gauche
-        elif self.rectangles_fleches[3].collidepoint(pos_souris):
-            pygame.draw.rect(self.ecran, (255, 0, 0), self.rectangles_fleches[3])  # Changer la couleur pour la flèche vers la droite
-
-        # Rafraîchir l'écran
         pygame.display.flip()
 
     def mettre_a_jour_couleurs_bouton_pokedex(self, pos_souris):
-        # Modifier la variable indiquant si le bouton est survolé
         self.bouton_pokedex_survole = self.rectangles_bouton_pokedex.collidepoint(pos_souris)
+        self.bouton_quitter_survole = self.rectangles_bouton_quitter.collidepoint(pos_souris)
 
     def gerer_evenements(self):
         for evenement in pygame.event.get():
@@ -138,52 +123,51 @@ class Pokedex:
                 sys.exit()
             elif evenement.type == pygame.MOUSEMOTION:
                 if self.en_menu:
-                    # Si nous sommes dans le menu, mettre à jour la couleur du bouton "Pokédex"
                     self.mettre_a_jour_couleurs_bouton_pokedex(pygame.mouse.get_pos())
                 else:
-                    # Sinon, vérifier si le bouton de retour est survolé
                     if self.rect_retour.collidepoint(pygame.mouse.get_pos()):
-                        # Changer l'image du bouton de retour lorsqu'il est survolé
                         self.image_retour = pygame.image.load("pokedex/assets/pokeball.png")
                     else:
                         self.image_retour = pygame.image.load("pokedex/assets/pokeball.png")
             elif evenement.type == pygame.MOUSEBUTTONDOWN:
-                if evenement.button == 1:  # Bouton gauche de la souris
+                if evenement.button == 1:
                     if self.en_menu:
-                        # Si nous sommes dans le menu, vérifier si le bouton "Pokédex" est cliqué
                         if self.rectangles_bouton_pokedex.collidepoint(evenement.pos):
-                            self.en_menu = False  # Passer au mode Pokédex
+                            self.en_menu = False
                             self.afficher_pokemon_courant()
+                            self.son_clic.play()
+                        elif self.rectangles_bouton_quitter.collidepoint(evenement.pos):
+                            pygame.quit()
+                            print("Fermeture du Pokédex.")
+                            sys.exit()
                     else:
-                        # Sinon, vérifier si le bouton de retour est cliqué
                         if self.rect_retour.collidepoint(evenement.pos):
-                            self.en_menu = True  # Revenir au menu principal
+                            self.en_menu = True
                             self.afficher_menu()
+                            self.son_clic.play()
                         else:
-                            # Sinon, vérifier si les flèches sont cliquées
                             if self.rectangles_fleches[2].collidepoint(evenement.pos):
                                 self.changer_pokemon_precedent()
+                                self.son_clic.play()
                             elif self.rectangles_fleches[3].collidepoint(evenement.pos):
                                 self.changer_pokemon_suivant()
+                                self.son_clic.play()
 
     def changer_pokemon_precedent(self):
-        # Défilement vers le Pokémon précédent
         self.index_pokemon_courant = (self.index_pokemon_courant - 1) % len(self.donnees_pokemon)
         if not self.en_menu:
             self.afficher_pokemon_courant()
 
     def changer_pokemon_suivant(self):
-        # Défilement vers le Pokémon suivant
         self.index_pokemon_courant = (self.index_pokemon_courant + 1) % len(self.donnees_pokemon)
         if not self.en_menu:
             self.afficher_pokemon_courant()
 
     def executer(self):
-        # Boucle principale
         en_cours = True
         while en_cours:
             self.gerer_evenements()
-            pygame.time.Clock().tick(60)  # Limiter la boucle à 60 images par seconde
+            pygame.time.Clock().tick(60)
 
 # Création d'une instance de la classe Pokedex et exécution du programme
 pokedex = Pokedex()
