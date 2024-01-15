@@ -1,85 +1,92 @@
+# Importation des modules nécessaires
 import pygame
-import bienvenue  # Importer le module bienvenue
-import choix  # Importer le module choix
+import bienvenue
+import choix
 
+# Initialisation de Pygame
 pygame.init()
 
-# Génération de la fenêtre du jeu
+# Configuration de la fenêtre principale
 pygame.display.set_caption("Pokemon")
 screen = pygame.display.set_mode((850, 531))
-# Charger votre logo
+
+# Chargement et configuration de l'icône de la fenêtre
 logo = pygame.image.load('menu/image/logopokeball.png')
-
-# Définir le logo de la fenêtre
 pygame.display.set_icon(logo)
-# Chargement du fond d'écran du menu
-background_menu = pygame.image.load('menu/image/pokemon.jpg')
 
-# Chargement et lecture de la musique Pokémon
-pygame.mixer.init()  # Initialisation du module mixer pour la musique
-pygame.mixer.music.load('menu/image/pokemon.mp3')  # Chargez votre fichier audio
-pygame.mixer.music.play(-1)  # Jouez la musique en boucle (-1 indique la lecture en boucle)
+# Chargement de l'image de fond du menu
+background_menu = pygame.image.load('menu/image/test.png')
 
-# Chargement du son du clic sur les boutons
-click_sound = pygame.mixer.Sound('menu/image/son.mp3')  # Chargez votre fichier audio pour le clic
+# Initialisation et lecture de la musique de fond
+pygame.mixer.init()
+pygame.mixer.music.load('menu/image/pokemon.mp3')
+pygame.mixer.music.play(-1)
 
-# Couleurs
+# Chargement du son de clic
+click_sound = pygame.mixer.Sound('menu/image/son.mp3')
+
+# Définition des couleurs utilisées
 WHITE = (255, 255, 255)
-BUTTON_COLOR = (70, 130, 180)  # Couleur des ellipses derrière les boutons (bleu ciel)
+BLACK = (0, 0, 0)
 
-# Police de caractères pour le texte du menu
+# Définition de la police utilisée pour les boutons
 font = pygame.font.Font('menu/image/Retro Gaming.ttf', 30)
 
 # Textes des boutons
 button_texts = ["Lancer une partie", "Ajouter un Pokémon", "Accéder au Pokédex", "Quitter"]
 
-# Rectangles pour les boutons
+# Rectangles des boutons
 button_rects = []
 
-# Création des rectangles pour chaque bouton
+# Création des rectangles des boutons
 for i, text in enumerate(button_texts):
     button_text = font.render(text, True, WHITE)
     button_rect = button_text.get_rect(center=(screen.get_width() // 2, 100 * (i + 1)))
-    button_rects.append(button_text.get_rect(center=(screen.get_width() // 2, 100 * (i + 1))))
+    button_rects.append(button_rect)
 
+# Variables de contrôle
 running = True
 in_menu = True
-in_choice = False  # Ajout de la variable d'état pour l'écran de choix
+in_choice = False
 
+# Boucle principale du programme
 while running:
+    # Gestion des événements
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            # Quitter le programme si la fenêtre est fermée
             running = False
             pygame.quit()
 
-        if event.type == pygame.MOUSEBUTTONDOWN and in_menu:
-            # Vérification si le clic de souris est sur l'un des boutons
-            for i, rect in enumerate(button_rects):
-                if rect.collidepoint(event.pos):
-                    click_sound.play()  # Jouez le son du clic lorsque le bouton est pressé
-                    if i == 0:
-                        # Passer de l'écran de menu à l'interface de bienvenue
-                        in_menu = False
-                        bienvenue.run(screen)  # Appeler la fonction run() de bienvenue.py
-                    elif i == 3:  # Si le bouton "Quitter" est cliqué
-                        running = False  # Cela ferme la boucle principale et quitte le jeu
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if in_menu:
+                # Vérifier si un bouton est cliqué
+                for i, rect in enumerate(button_rects):
+                    if rect.collidepoint(event.pos):
+                        # Jouer le son de clic
+                        click_sound.play()
+                        # Exécuter différentes actions en fonction du bouton cliqué
+                        if i == 0:
+                            in_menu = False
+                            bienvenue.run(screen)
+                        elif i == 3:
+                            running = False
+            elif in_choice:
+                # Si dans l'écran de choix, exécuter la fonction de choix
+                choix.choix(screen)
 
-        elif event.type == pygame.MOUSEBUTTONDOWN and in_choice:
-            # Appeler la fonction choix() de choix.py
-            choix.choix(screen)
-
-    # Affichage du contenu en fonction de l'état (menu ou choix)
     if in_menu:
+        # Afficher l'image de fond du menu
         screen.blit(background_menu, (0, 0))
-        # Affichage des ellipses derrière les boutons du menu
+
+        # Afficher les boutons
         for i, rect in enumerate(button_rects):
-            ellipse_rect = pygame.Rect(rect.left - 20, rect.top - 10, rect.width + 40, rect.height + 20)
-            pygame.draw.ellipse(screen, BUTTON_COLOR, ellipse_rect)
-            # Affichage du texte des boutons
-            button_text = font.render(button_texts[i], True, WHITE)
+            button_text = font.render(button_texts[i], True, BLACK)
             text_rect = button_text.get_rect(center=rect.center)
             screen.blit(button_text, text_rect)
 
+    # Mettre à jour l'affichage
     pygame.display.flip()
 
+# Quitter Pygame à la fin
 pygame.quit()
