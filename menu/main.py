@@ -15,7 +15,7 @@ logo = pygame.image.load('menu/image/logopokeball.png')
 pygame.display.set_icon(logo)
 
 # Chargement de l'image de fond du menu
-background_menu = pygame.image.load('menu/image/test.png')
+background_menu = pygame.image.load('menu/image/pokemon.png')
 
 # Initialisation et lecture de la musique de fond
 pygame.mixer.init()
