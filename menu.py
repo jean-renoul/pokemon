@@ -5,21 +5,21 @@ class Menu:
         pygame.display.set_caption("Pokemon")
         self.screen = pygame.display.set_mode((850, 531))
 
-        logo = pygame.image.load('menu/image/icon_pokeball.png')
+        logo = pygame.image.load('image/icon_pokeball.png')
         pygame.display.set_icon(logo)
 
-        self.background_menu = pygame.image.load('menu/image/image_ecran/pokemon.png')
+        self.background_menu = pygame.image.load('image/image_ecran/pokemon.png')
 
         pygame.mixer.init()
-        pygame.mixer.music.load('menu/son/pokemon.mp3')
+        pygame.mixer.music.load('son/pokemon.mp3')
         pygame.mixer.music.play(-1)
 
-        self.click_sound = pygame.mixer.Sound('menu/son/son.mp3')
+        self.click_sound = pygame.mixer.Sound('son/son.mp3')
 
         self.WHITE = (255, 255, 255)
         self.BLACK = (0, 0, 0)
 
-        self.font = pygame.font.Font('menu/police_ecriture.ttf', 30)
+        self.font = pygame.font.Font('police_ecriture.ttf', 30)
 
         self.button_texts = ["Lancer une partie", "Ajouter un Pokémon", "Accéder au Pokédex", "Quitter"]
 

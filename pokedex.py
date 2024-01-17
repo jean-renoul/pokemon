@@ -3,19 +3,19 @@ class Pokedex:
         pygame.init()
         pygame.mixer.init()
 
-        with open("menu/pokedex.json", "r") as fichier_json:
+        with open("pokedex.json", "r") as fichier_json:
             self.donnees_pokemon = json.load(fichier_json)
 
         pygame.display.set_caption("Pokédex")
         self.ecran = screen
-        self.logo = pygame.image.load('menu/image/icon_pokeball.png')
+        self.logo = pygame.image.load('image/icon_pokeball.png')
         pygame.display.set_icon(self.logo)
 
-        self.image_fond = pygame.image.load("menu/image/image_pokedex/pokedex.png")
+        self.image_fond = pygame.image.load("image/image_pokedex/pokedex.png")
 
-        self.police = pygame.font.Font("menu/police_ecriture.ttf", 20)
+        self.police = pygame.font.Font("police_ecriture.ttf", 20)
 
-        self.son_clic = pygame.mixer.Sound("menu/son/son.mp3")
+        self.son_clic = pygame.mixer.Sound("son/son.mp3")
 
         self.index_pokemon_courant = 0
         self.en_menu = True
@@ -28,12 +28,12 @@ class Pokedex:
         self.rectangles_bouton_quitter = pygame.Rect(295, 425, 250, 50)
         self.bouton_quitter_survole = False
 
-        self.image_logo_pokemon = pygame.image.load("menu/image/image_pokedex/pokemon_logo.png")
+        self.image_logo_pokemon = pygame.image.load("image/image_pokedex/pokemon_logo.png")
         x_position_logo = 295
         y_position_logo = 80
         self.rect_logo_pokemon = self.image_logo_pokemon.get_rect(topleft=(x_position_logo, y_position_logo))
 
-        self.image_retour = pygame.image.load("menu/image/image_pokedex/pokeball.png")
+        self.image_retour = pygame.image.load("image/image_pokedex/pokeball.png")
         self.rect_retour = self.image_retour.get_rect(topleft=(700, 353))
 
         self.deplacement_x = 0
@@ -114,9 +114,9 @@ class Pokedex:
                     self.mettre_a_jour_couleurs_bouton_pokedex(pygame.mouse.get_pos())
                 else:
                     if self.rect_retour.collidepoint(pygame.mouse.get_pos()):
-                        self.image_retour = pygame.image.load("menu/image/image_pokedex/pokeball.png")
+                        self.image_retour = pygame.image.load("image/image_pokedex/pokeball.png")
                     else:
-                        self.image_retour = pygame.image.load("menu/image/image_pokedex/pokeball.png")
+                        self.image_retour = pygame.image.load("image/image_pokedex/pokeball.png")
             elif evenement.type == pygame.MOUSEBUTTONDOWN:
                 if evenement.button == 1:
                     if self.en_menu:

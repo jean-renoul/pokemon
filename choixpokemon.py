@@ -5,13 +5,13 @@ def choixpokemon(screen):
     pygame.init()
     pygame.display.set_caption("Pokemon")
     # Chargement du fond d'écran
-    background = pygame.image.load('menu/image/image_ecran/bienvenue3.png')
+    background = pygame.image.load('image/image_ecran/bienvenue3.png')
     # Chargement de l'image pour le bouton pokeball
-    button_image = pygame.image.load('menu/image/image_pokedex/pokeball.png')  
+    button_image = pygame.image.load('image/image_pokedex/pokeball.png')  
     button_rect = button_image.get_rect(center=(screen.get_width() // 2, screen.get_height() // 1.15))  # Positionner un peu plus bas sur l'écran
 
      # Chargement du son du clic sur les boutons
-    click_sound = pygame.mixer.Sound('menu/son/son.mp3')
+    click_sound = pygame.mixer.Sound('son/son.mp3')
 
     running = True
     while running:
