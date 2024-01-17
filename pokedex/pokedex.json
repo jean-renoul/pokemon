@@ -7,7 +7,7 @@
         "attaque": "52",
         "defense": "33",
         "numero": "0004",
-        "image": "pokedex/assets/pokemon/salameche.png"
+        "image": "menu/image/image_pokedex/pokemon/salameche.png"
     },
     {
         "nom": "Carapuce",
@@ -17,7 +17,7 @@
         "attaque": "48",
         "defense": "34",
         "numero": "0007",
-        "image": "pokedex/assets/pokemon/carapuce.png"
+        "image": "menu/image/image_pokedex/pokemon/carapuce.png"
     },
     {
         "nom": "Taupiqueur",
@@ -27,7 +27,7 @@
         "attaque": "52",
         "defense": "35",
         "numero": "0050",
-        "image": "pokedex/assets/pokemon/taupiqueur.png"
+        "image": "menu/image/image_pokedex/pokemon/taupiqueur.png"
     },
     {
         "nom": "Saquedeneu",
@@ -37,7 +37,7 @@
         "attaque": "42",
         "defense": "32",
         "numero": "0114",
-        "image": "pokedex/assets/pokemon/saquedeneu.png"
+        "image": "menu/image/image_pokedex/pokemon/saquedeneu.png"
     },
     {
         "nom": "Chenipan",
@@ -47,7 +47,7 @@
         "attaque": "40",
         "defense": "36",
         "numero": "0010",
-        "image": "pokedex/assets/pokemon/chenipan.png"
+        "image": "menu/image/image_pokedex/pokemon/chenipan.png"
     },
     {
         "nom": "Pikachu",
@@ -57,7 +57,7 @@
         "attaque": "55",
         "defense": "40",
         "numero": "0025",
-        "image": "pokedex/assets/pokemon/pikachu.png"
+        "image": "menu/image/image_pokedex/pokemon/pikachu.png"
     },
     {
         "nom": "Tadmorv",
@@ -67,7 +67,7 @@
         "attaque": "37",
         "defense": "37",
         "numero": "0088",
-        "image": "pokedex/assets/pokemon/tadmorv.png"
+        "image": "menu/image/image_pokedex/pokemon/tadmorv.png"
     },
     {
         "nom": "Abra",
@@ -77,7 +77,7 @@
         "attaque": "55",
         "defense": "29",
         "numero": "0063",
-        "image": "pokedex/assets/pokemon/abra.png"
+        "image": "menu/image/image_pokedex/pokemon/abra.png"
     },
     {
         "nom": "Reptincel",
@@ -87,7 +87,7 @@
         "attaque": "72",
         "defense": "53",
         "numero": "0005",
-        "image": "pokedex/assets/pokemon/reptincelle.png"
+        "image": "menu/image/image_pokedex/pokemon/reptincelle.png"
     },
     {
         "nom": "Carabaffe",
@@ -97,7 +97,7 @@
         "attaque": "68",
         "defense": "54",
         "numero": "0008",
-        "image": "pokedex/assets/pokemon/carabaffe.png"
+        "image": "menu/image/image_pokedex/pokemon/carabaffe.png"
     },
     {
         "nom": "Triopiqueur",
@@ -107,7 +107,7 @@
         "attaque": "72",
         "defense": "55",
         "numero": "0051",
-        "image": "pokedex/assets/pokemon/triopiqueur.png"
+        "image": "menu/image/image_pokedex/pokemon/triopiqueur.png"
     },
     {
         "nom": "Bouldeneu",
@@ -117,7 +117,7 @@
         "attaque": "62",
         "defense": "52",
         "numero": "0465",
-        "image": "pokedex/assets/pokemon/bouldeneu.png"
+        "image": "menu/image/image_pokedex/pokemon/bouldeneu.png"
     },
     {
         "nom": "Chrysacier",
@@ -127,7 +127,7 @@
         "attaque": "60",
         "defense": "56",
         "numero": "0011",
-        "image": "pokedex/assets/pokemon/chrysacier.png"
+        "image": "menu/image/image_pokedex/pokemon/chrysacier.png"
     },
     {
         "nom": "Raichu",
@@ -137,7 +137,7 @@
         "attaque": "75",
         "defense": "60",
         "numero": "0026",
-        "image": "pokedex/assets/pokemon/raichu.png"
+        "image": "menu/image/image_pokedex/pokemon/raichu.png"
     },
     {
         "nom": "Grotadmorv",
@@ -147,7 +147,7 @@
         "attaque": "58",
         "defense": "57",
         "numero": "0089",
-        "image": "pokedex/assets/pokemon/grotadmorv.png"
+        "image": "menu/image/image_pokedex/pokemon/grotadmorv.png"
     },
     {
         "nom": "Kadabra",
@@ -157,6 +157,6 @@
         "attaque": "75",
         "defense": "59",
         "numero": "0064",
-        "image": "pokedex/assets/pokemon/kadabra.png"
+        "image": "menu/image/image_pokedex/pokemon/kadabra.png"
     }
 ]
