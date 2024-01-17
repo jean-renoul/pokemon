@@ -1,6 +1,5 @@
 import sys
 sys.path.append("Classes")
-from Classes.Pokemon import Pokemon
 from Classes.Moves import Moves
 
 # Attaques des pokemons
@@ -17,17 +16,32 @@ ecras_face = Moves("Ecras'Face", "Normal", 40)
 detritus = Moves("Detritus", "Poison", 40)
 choc_mental = Moves("Choc Mental", "Psy", 40)
 
-#Pokemons starters
-salameche = Pokemon("Salameche", 1, "Feu", 39, 52, 33, griffe, flammeche)
-carapuce = Pokemon("Carapuce", 1, "Eau", 44, 48, 34, charge, pistolet_a_O)
-taupiqueur = Pokemon("Taupiqueur", 1, "Sol", 30, 52, 35, griffe, tunnel)
-saquedeneu = Pokemon("Saquedeneu", 1, "Plante", 65, 42, 32, charge, fouet_lianes)
-chenipan = Pokemon("Chenipan", 1, "Insecte", 45, 40, 36, charge, double_dard)
-pikachu = Pokemon ("Pikachu", 1, "Electrique", 35, 55, 40, vive_attaque, eclair)
-tadmorv = Pokemon ("Tadmorv", 1, "Poison", 60, 37, 37, ecras_face, detritus)
-abra = Pokemon ("Abra", 1, "Psy", 33, 55, 29, choc_mental, charge)
+moves_dict = {
+    "griffe": griffe,
+    "flammeche": flammeche,
+    "charge": charge,
+    "pistolet a O": pistolet_a_O,
+    "tunnel": tunnel,
+    "fouet lianes": fouet_lianes,
+    "double dard": double_dard,
+    "vive attaque": vive_attaque,
+    "eclair": eclair,
+    "ecras'face": ecras_face,
+    "detritus": detritus,
+    "choc mental": choc_mental
+}
 
-liste_pokemon = [salameche, carapuce, taupiqueur, saquedeneu, chenipan, pikachu, tadmorv, abra]
+#Pokemons starters
+#salameche = Pokemon("Salameche", 1, "Feu", 39, 52, 33, griffe, flammeche)
+#carapuce = Pokemon("Carapuce", 1, "Eau", 44, 48, 34, charge, pistolet_a_O)
+#taupiqueur = Pokemon("Taupiqueur", 1, "Sol", 30, 52, 35, griffe, tunnel)
+#saquedeneu = Pokemon("Saquedeneu", 1, "Plante", 65, 42, 32, charge, fouet_lianes)
+#chenipan = Pokemon("Chenipan", 1, "Insecte", 45, 40, 36, charge, double_dard)
+#pikachu = Pokemon ("Pikachu", 1, "Electrique", 35, 55, 40, vive_attaque, eclair)
+#tadmorv = Pokemon ("Tadmorv", 1, "Poison", 60, 37, 37, ecras_face, detritus)
+#abra = Pokemon ("Abra", 1, "Psy", 33, 55, 29, choc_mental, charge)
+
+#liste_pokemon = [salameche, carapuce, taupiqueur, saquedeneu, chenipan, pikachu, tadmorv, abra]
 
 # Pokemons évolués
 

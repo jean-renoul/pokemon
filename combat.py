@@ -1,18 +1,42 @@
 import sys
 sys.path.append("Classes")
 from Classes.Combat import Combat
-from globals import *
-import random
+from Classes.Pokemon import Pokemon
 from globals import *
 import random
 import pygame
 from pygame.locals import *
+import json
 
 pygame.init()
 pygame.display.set_caption("Combat de Pokemon")
 
+# Charger données pokemon
+with open("pokemon.json", "r") as read_file:
+    data = json.load(read_file)
+
+liste_pokemon = []
+
+for pokemon in data[0].values():
+
+    move1 = moves_dict.get(pokemon["move1"])
+    move2 = moves_dict.get(pokemon["move2"])
+
+
+    instance = Pokemon(
+        pokemon["nom"],
+        pokemon["niveau"],
+        pokemon["type"],
+        pokemon["vie"],
+        pokemon["attaque"],
+        pokemon["defense"],
+        move1,
+        move2
+        )
+    liste_pokemon.append(instance)
+
 # Variables jeu
-pokemon1 = salameche
+pokemon1 = liste_pokemon[0]
 liste_pokemon.remove(pokemon1)
 pokemon2 = random.choice(liste_pokemon)
 duel = Combat(pokemon1, pokemon2)
@@ -32,7 +56,7 @@ def drawText(surface, text, color, rect, font, aa=False, bkg=None):
     lineSpacing = -2
 
     # get the height of the font
-    fontHeight = font.size("Tg")[1]
+    fontHeight = font.size("zone_combat/assets/Fonts/Retro Gaming.ttf")[1]
 
     while text:
         i = 1
@@ -93,6 +117,7 @@ while running:
     tour_joueur = True
 
     if duel.check_vainqueur() == pokemon1:
+        pokemon1.niveau += 1
         ecran_de_victoire()
         running = False
         pygame.quit()
@@ -105,8 +130,8 @@ while running:
 
     image_pokemon_joueur = pygame.image.load(f"zone_combat/assets/pokemon/{pokemon1.nom}_inverse.png")
     image_pokemon_ennemi = pygame.image.load(f"zone_combat/assets/pokemon/{pokemon2.nom}.png")
-    info_pokemon_joueur = smallfont.render(f"{salameche.nom} : {salameche.vie} pv", True, (255, 255, 255))
-    info_pokemon_ennemi = smallfont.render(f"{pokemon2.nom} : {pokemon2.vie} pv", True, (255, 255, 255))
+    info_pokemon_joueur = smallfont.render(f"{pokemon1.nom} : {pokemon1.vie} pv | niv. {pokemon1.niveau}", True, (255, 255, 255))
+    info_pokemon_ennemi = smallfont.render(f"{pokemon2.nom} : {pokemon2.vie} pv | niv. {pokemon2.niveau}", True, (255, 255, 255))
     
 
     # Si l'utilisateur ferme la fenêtre
@@ -158,6 +183,7 @@ while running:
     if tour_joueur == False:
 
         if duel.check_vainqueur() == pokemon1:
+            pokemon1.niveau += 1
             ecran_de_victoire()
             running = False
             pygame.quit()
@@ -214,12 +240,12 @@ while running:
 
     # Appliquer l'image et les infos du pokemon du joueur
     screen.blit(image_pokemon_joueur, (80, 220))        
-    pygame.draw.rect(screen, (208, 199, 124), (60, 470, 300, 50))
+    pygame.draw.rect(screen, (208, 199, 124), (60, 470, 370, 50))
     screen.blit(info_pokemon_joueur, (80, 475))
 
     # Appliquer l'image et les infos du pokemon de l'ennemi
     screen.blit(image_pokemon_ennemi, (500, 70))    
-    pygame.draw.rect(screen, (208, 199, 124), (475, 10, 300, 50))
+    pygame.draw.rect(screen, (208, 199, 124), (475, 10, 370, 50))
     screen.blit(info_pokemon_ennemi, (500, 20))
 
     #Appliquer les boutons
@@ -232,6 +258,3 @@ while running:
 
     # Mettre à jour l'écran
     pygame.display.flip()
-    
-
-    

@@ -1,6 +1,5 @@
 import random
 
-
 class Combat:
     def __init__(self, pokemon1, pokemon2):
         self.pokemon1 = pokemon1
