@@ -1,74 +1,56 @@
-import pygame
-import pygame.mixer
-import json
-import sys
-
 class Pokedex:
-    def __init__(self):
+    def __init__(self, screen):
         pygame.init()
         pygame.mixer.init()
 
-        # Charger les données JSON
-        with open("pokedex/pokedex.json", "r") as fichier_json:
+        with open("menu/pokedex.json", "r") as fichier_json:
             self.donnees_pokemon = json.load(fichier_json)
 
-        # Création de la fenêtre de notre pokédex.
         pygame.display.set_caption("Pokédex")
-        self.ecran = pygame.display.set_mode((850, 531))
-        self.logo = pygame.image.load('pokedex/assets/logopokeball.png')
+        self.ecran = screen
+        self.logo = pygame.image.load('menu/image/icon_pokeball.png')
         pygame.display.set_icon(self.logo)
 
-        # Chargement de l'image du châssis du pokédex.
-        self.image_fond = pygame.image.load("pokedex/assets/pokedex.png")
+        self.image_fond = pygame.image.load("menu/image/image_pokedex/pokedex.png")
 
-        # Police pour le texte
-        self.police = pygame.font.Font("pokedex/assets/Retro Gaming.ttf", 20)
+        self.police = pygame.font.Font("menu/police_ecriture.ttf", 20)
 
-        # Son du clic
-        self.son_clic = pygame.mixer.Sound("pokedex/assets/son.mp3")
+        self.son_clic = pygame.mixer.Sound("menu/son/son.mp3")
 
-        # Variables
         self.index_pokemon_courant = 0
         self.en_menu = True
+        self.quitter_pokedex = False
+        self.bouton_quitter_presse = False
 
-        # Rectangles pour le bouton "Pokédex"
         self.rectangles_bouton_pokedex = pygame.Rect(290, 365, 250, 50)
         self.bouton_pokedex_survole = False
 
-        # Rectangles pour le bouton "Quitter le Pokédex"
         self.rectangles_bouton_quitter = pygame.Rect(295, 425, 250, 50)
         self.bouton_quitter_survole = False
 
-        # Chargement de l'image du logo Pokémon dans le menu
-        self.image_logo_pokemon = pygame.image.load("pokedex/assets/pokemon_logo.png")  
-        x_position_logo = 295  
-        y_position_logo = 80  
+        self.image_logo_pokemon = pygame.image.load("menu/image/image_pokedex/pokemon_logo.png")
+        x_position_logo = 295
+        y_position_logo = 80
         self.rect_logo_pokemon = self.image_logo_pokemon.get_rect(topleft=(x_position_logo, y_position_logo))
 
-        # Chargement de l'image de la Pokéball pour le bouton de retour
-        self.image_retour = pygame.image.load("pokedex/assets/pokeball.png")
-        self.rect_retour = self.image_retour.get_rect(topleft=(710, 360))
+        self.image_retour = pygame.image.load("menu/image/image_pokedex/pokeball.png")
+        self.rect_retour = self.image_retour.get_rect(topleft=(700, 353))
 
-        # Définir les mouvements de la Pokéball
         self.deplacement_x = 0
         self.deplacement_y = 0
 
-        # Afficher le menu après l'initialisation
         self.afficher_menu()
 
     def afficher_menu(self):
         self.ecran.fill((255, 255, 255))
         self.ecran.blit(self.image_fond, (0, 0))
 
-        # Afficher l'image du logo Pokémon dans le menu
         self.ecran.blit(self.image_logo_pokemon, self.rect_logo_pokemon)
 
-        # Bouton "Accéder au Pokédex"
         texte_couleur_pokedex = (255, 255, 255)
         texte_surface_pokedex = self.police.render("Accéder au Pokédex", True, texte_couleur_pokedex)
         self.ecran.blit(texte_surface_pokedex, (290, 365))
 
-        # Bouton "Quitter le Pokédex"
         texte_couleur_quitter = (255, 255, 255)
         texte_surface_quitter = self.police.render("Quitter le Pokédex", True, texte_couleur_quitter)
         self.ecran.blit(texte_surface_quitter, (295, 425))
@@ -115,6 +97,12 @@ class Pokedex:
         self.bouton_pokedex_survole = self.rectangles_bouton_pokedex.collidepoint(pos_souris)
         self.bouton_quitter_survole = self.rectangles_bouton_quitter.collidepoint(pos_souris)
 
+    def passer_au_menu(self):
+        self.en_menu = True
+        self.quitter_pokedex = False
+        self.bouton_quitter_presse = False
+        self.afficher_menu()
+
     def gerer_evenements(self):
         for evenement in pygame.event.get():
             if evenement.type == pygame.QUIT:
@@ -126,9 +114,9 @@ class Pokedex:
                     self.mettre_a_jour_couleurs_bouton_pokedex(pygame.mouse.get_pos())
                 else:
                     if self.rect_retour.collidepoint(pygame.mouse.get_pos()):
-                        self.image_retour = pygame.image.load("pokedex/assets/pokeball.png")
+                        self.image_retour = pygame.image.load("menu/image/image_pokedex/pokeball.png")
                     else:
-                        self.image_retour = pygame.image.load("pokedex/assets/pokeball.png")
+                        self.image_retour = pygame.image.load("menu/image/image_pokedex/pokeball.png")
             elif evenement.type == pygame.MOUSEBUTTONDOWN:
                 if evenement.button == 1:
                     if self.en_menu:
@@ -137,9 +125,11 @@ class Pokedex:
                             self.afficher_pokemon_courant()
                             self.son_clic.play()
                         elif self.rectangles_bouton_quitter.collidepoint(evenement.pos):
-                            pygame.quit()
-                            print("Fermeture du Pokédex.")
-                            sys.exit()
+                            self.quitter_pokedex = True
+                            self.bouton_quitter_presse = True
+                            self.son_clic.play()
+                            menu = Menu()
+                            menu.run()
                     else:
                         if self.rect_retour.collidepoint(evenement.pos):
                             self.en_menu = True
@@ -169,6 +159,17 @@ class Pokedex:
             self.gerer_evenements()
             pygame.time.Clock().tick(60)
 
+    
+
 # Création d'une instance de la classe Pokedex et exécution du programme
-pokedex = Pokedex()
-pokedex.executer()
+if __name__ == "__main__":
+    pygame.init()
+    screen = pygame.display.set_mode((850, 531))
+    pokedex = Pokedex(screen)
+    pokedex.executer()
+
+import pygame
+import pygame.mixer
+import json
+import sys
+from menu import *
