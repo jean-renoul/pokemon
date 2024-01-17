@@ -1,0 +1,84 @@
+[
+    {
+        "salameche" : {
+            "nom": "Salameche",
+            "niveau": 1,
+            "type": "Feu",
+            "vie" : 39,
+            "attaque" : 52,
+            "defense" : 35,
+            "move1" : "griffe",
+            "move2" : "flammeche"
+        },
+        "carapuce" :{
+            "nom": "Carapuce",
+            "niveau": 1,
+            "type": "Eau",
+            "vie" : 44,
+            "attaque" : 48,
+            "defense" : 34,
+            "move1" : "charge",
+            "move2" : "pistolet a O"
+        },
+        "taupiqueur" :{
+            "nom": "Taupiqueur",
+            "niveau": 1,
+            "type": "Sol",
+            "vie" : 30,
+            "attaque" : 52,
+            "defense" : 35,
+            "move1" : "griffe",
+            "move2" : "tunnel"
+        },
+        "saquedeneu" :{
+            "nom": "Saquedeneu",
+            "niveau": 1,
+            "type": "Plante",
+            "vie": 65,
+            "attaque": 42,
+            "defense": 32,
+            "move1": "charge",
+            "move2": "fouet lianes"
+        },
+        "chenipan" :{
+            "nom": "Chenipan",
+            "niveau": 1,
+            "type": "Insecte",
+            "vie": 45,
+            "attaque": 40,
+            "defense": 36,
+            "move1": "charge",
+            "move2": "double dard"
+        },
+        "pikachu" :{
+            "nom": "Pikachu",
+            "niveau": 1,
+            "type": "Electrique",
+            "vie": 35,
+            "attaque": 55,
+            "defense": 40,
+            "move1": "vive attaque",
+            "move2": "eclair"
+        },
+        "tadmorv" :{
+            "nom": "Tadmorv",
+            "niveau": 1,
+            "type": "Poison",
+            "vie": 60,
+            "attaque": 37,
+            "defense": 37,
+            "move1": "ecras'face",
+            "move2": "detritus"
+        },
+        "abra" :{
+            "nom": "Abra",
+            "niveau": 1,
+            "type": "Psy",
+            "vie": 33,
+            "attaque": 55,
+            "defense": 29,
+            "move1": "choc mental",
+            "move2": "charge"
+        }
+    }
+]

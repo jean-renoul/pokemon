@@ -1,6 +1,4 @@
-from Pokemon import Pokemon
-from Moves import Moves
-
+import random
 
 class Combat:
     def __init__(self, pokemon1, pokemon2):
@@ -91,12 +89,24 @@ class Combat:
                 return 1
 
     def attack(self, pokemon1, pokemon2, move):
-        degats = round((2.4 * pokemon1.attaque * move.puissance) / (pokemon2.defense * 50) + 2) * self.calculer_modifier(pokemon1, pokemon2, move)
-        pokemon2.vie -= degats
-        if self.calculer_modifier(pokemon1, pokemon2, move) == 2:
-            print (f"C'est super efficace !")        
+        degats = round((pokemon1.niveau * 0.4 * pokemon1.attaque * move.puissance) / (pokemon2.defense * 10) + 2) * self.calculer_modifier(pokemon1, pokemon2, move)
+        aleatoire = random.randint(-1, 1)
+        degats += aleatoire
+        if degats <= 0:
+            degats = 1
+        pokemon2.vie -= degats                
         print (f"{pokemon1.nom} attaque {pokemon2.nom} avec {move.nom} et lui inflige {degats} points de dégats !")
-        print (f"{pokemon2.nom} a maintenant {pokemon2.vie} points de vie.")
+        if self.calculer_modifier(pokemon1, pokemon2, move) == 2:
+            print (f"C'est super efficace !")
         if self.calculer_modifier(pokemon1, pokemon2, move) == 0.5:
             print (f"C'est pas très efficace...")
-        return pokemon2.vie
+        print (f"{pokemon2.nom} a maintenant {pokemon2.vie} points de vie.")
+        return degats
+
+    def check_vainqueur(self):
+        if self.pokemon1.vie <= 0:
+            return self.pokemon2
+        elif self.pokemon2.vie <= 0:
+            return self.pokemon1
+        else:
+            return False
