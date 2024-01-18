@@ -1,9 +1,37 @@
 import pygame
-import ajouter
+import json
+from Classes.Pokemon import Pokemon
+from globals import *
+from combat import lancer_combat
 
 def choix2pokemon(screen):
     pygame.init()
     pygame.display.set_caption("Pokemon")
+
+    # Charger données pokemon
+    with open("pokemon.json", "r") as read_file:
+        data = json.load(read_file)
+
+    liste_pokemon = []
+
+    for pokemon in data[0].values():
+
+        move1 = moves_dict.get(pokemon["move1"])
+        move2 = moves_dict.get(pokemon["move2"])
+
+
+        instance = Pokemon(
+            pokemon["nom"],
+            pokemon["niveau"],
+            pokemon["type"],
+            pokemon["vie"],
+            pokemon["attaque"],
+            pokemon["defense"],
+            move1,
+            move2
+            )
+        liste_pokemon.append(instance)    
+
     # Chargement du fond d'écran
     background = pygame.image.load('image/image_ecran/choixpokemon.png')
     
@@ -24,6 +52,7 @@ def choix2pokemon(screen):
     # Chargement du son du clic sur les boutons
     click_sound = pygame.mixer.Sound('son/son.mp3')
 
+
     running = True
     while running:
         screen.blit(background, (0, 0))
@@ -37,7 +66,14 @@ def choix2pokemon(screen):
                 running = False
                 pygame.quit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if pokeball1_rect.collidepoint(event.pos) or pokeball2_rect.collidepoint(event.pos) or pokeball3_rect.collidepoint(event.pos):
+                if pokeball1_rect.collidepoint(event.pos):
                     click_sound.play()  # Jouez le son du clic
-                    ajouter.ajouter(screen)  # Appeler la fonction ajouter() de ajouter.py
-                    return
+                    lancer_combat(liste_pokemon[0])
+                if pokeball2_rect.collidepoint(event.pos):
+                    click_sound.play()
+                    lancer_combat(liste_pokemon[5])
+                if pokeball3_rect.collidepoint(event.pos):
+                    click_sound.play()
+                    lancer_combat(liste_pokemon[1])
+
+    
