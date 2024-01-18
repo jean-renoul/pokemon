@@ -110,3 +110,4 @@ class Combat:
             return self.pokemon1
         else:
             return False
+    

@@ -2,83 +2,91 @@
     {
         "reptincel": {
             "nom" : "reptincel",
-            "niveau" : 3,
+            "niveau" : 4,
             "type" : "Feu",
             "vie" : 59,
             "attaque" : 72,
             "defense" : 55,
             "move1" : "griffe",
-            "move2" : "flammeche"
+            "move2" : "flammeche",
+            "evolution": " "
         },
         "carabaffe": {
             "nom" : "carabaffe",
-            "niveau" : 3,
+            "niveau" : 4,
             "type" : "Eau",
             "vie" : 64,
             "attaque" : 68,
             "defense" : 54,
             "move1" : "charge",
-            "move2" : "pistolet a O"
+            "move2" : "pistolet a O",
+            "evolution": " "
         },
         "triopiqueur": {
             "nom" : "triopiqueur",
-            "niveau" : 3,
+            "niveau" : 4,
             "type" : "Sol",
             "vie" : 50,
             "attaque" : 72,
             "defense" : 55,
             "move1" : "griffe",
-            "move2" : "tunnel"
+            "move2" : "tunnel",
+            "evolution": " "
         },
         "bouldeneu": {
             "nom" : "bouldeneu",
-            "niveau" : 3,
+            "niveau" : 4,
             "type" : "Plante",
             "vie" : 85,
             "attaque" : 52,
             "defense" : 52,
             "move1" : "charge",
-            "move2" : "fouet lianes"
+            "move2" : "fouet lianes",
+            "evolution": " "
         },
         "chrysacier": {
             "nom" : "chrysacier",
-            "niveau" : 3,
+            "niveau" : 4,
             "type" : "Insecte",
             "vie" : 65,
             "attaque" : 60,
             "defense" : 56,
             "move1" : "charge",
-            "move2" : "double dard"
+            "move2" : "double dard",
+            "evolution": " "
         },
         "raichu": {
             "nom" : "raichu",
-            "niveau" : 3,
+            "niveau" : 4,
             "type" : "Electrique",
             "vie" : 55,
             "attaque" : 75,
             "defense" : 60,
             "move1" : "vive attaque",
-            "move2" : "eclair"
+            "move2" : "eclair",
+            "evolution": " "
         },
         "grotadmorv": {
             "nom" : "grotadmorv",
-            "niveau" : 3,
+            "niveau" : 4,
             "type" : "Poison",
             "vie" : 80,
             "attaque" : 57,
             "defense" : 57,
             "move1" : "ecras'face",
-            "move2" : "detritus"
+            "move2" : "detritus",
+            "evolution": " "
         },
         "kadabra": {
             "nom" : "kadabra",
-            "niveau" : 3,
+            "niveau" : 4,
             "type" : "Psy",
             "vie" : 53,
             "attaque" : 75,
             "defense" : 49,
             "move1" : "choc mental",
-            "move2" : "charge"
+            "move2" : "charge",
+            "evolution": " "
         }
         
     }

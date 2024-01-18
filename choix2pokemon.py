@@ -28,7 +28,8 @@ def choix2pokemon(screen):
             pokemon["attaque"],
             pokemon["defense"],
             move1,
-            move2
+            move2,
+            pokemon["evolution"]
             )
         liste_pokemon.append(instance)    
 

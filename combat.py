@@ -8,19 +8,44 @@ import pygame
 from pygame.locals import *
 import json
 from choix2pokemon import *
+from menu import Menu
 
-def lancer_combat(pokemon_joueur):
 
-    # Initialisation de pygame
-    pygame.init()
-    pygame.display.set_caption("Combat de Pokemon")
 
-    # Charger données pokemon
-    with open("pokemon.json", "r") as read_file:
+
+# Initialisation de pygame
+pygame.init()
+pygame.display.set_caption("Combat de Pokemon")
+
+# Charger données pokemon
+with open("pokemon.json", "r") as read_file:
+    data = json.load(read_file)
+
+liste_pokemon = []
+
+for pokemon in data[0].values():
+
+    move1 = moves_dict.get(pokemon["move1"])
+    move2 = moves_dict.get(pokemon["move2"])
+
+
+    instance = Pokemon(
+        pokemon["nom"],
+        pokemon["niveau"],
+        pokemon["type"],
+        pokemon["vie"],
+        pokemon["attaque"],
+        pokemon["defense"],
+        move1,
+        move2,
+        pokemon["evolution"]
+        )
+    liste_pokemon.append(instance)
+
+def evolution(pokemon_joueur):
+    with open("pokemon_evolution.json", "r") as read_file:
         data = json.load(read_file)
-
-    liste_pokemon = []
-
+    
     for pokemon in data[0].values():
 
         move1 = moves_dict.get(pokemon["move1"])
@@ -35,83 +60,50 @@ def lancer_combat(pokemon_joueur):
             pokemon["attaque"],
             pokemon["defense"],
             move1,
-            move2
+            move2,
+            pokemon["evolution"]
             )
         liste_pokemon.append(instance)
 
-    # Variables jeu
+    for pokemon in liste_pokemon:
+        if pokemon.nom == pokemon_joueur.evolution:
+            pokemon_joueur.nom = data[0][pokemon.nom]["nom"]
+            pokemon_joueur.niveau = data[0][pokemon.nom]["niveau"]
+            pokemon_joueur.type = data[0][pokemon.nom]["type"]
+            pokemon_joueur.vie = data[0][pokemon.nom]["vie"]
+            pokemon_joueur.attaque = data[0][pokemon.nom]["attaque"]
+            pokemon_joueur.defense = data[0][pokemon.nom]["defense"]
+            pokemon_joueur.move1 = moves_dict.get(data[0][pokemon.nom]["move1"])
+            pokemon_joueur.move2 = moves_dict.get(data[0][pokemon.nom]["move2"])
+            break
+    
+    
+    
+
+# Variables graphiques
+screen = pygame.display.set_mode((850, 531))
+width = screen.get_width()
+height = screen.get_height()
+
+background = pygame.image.load("image/image_ecran/combat.png")
+smallfont = pygame.font.Font("police_ecriture.ttf", 20)
+
+
+def lancer_combat(pokemon_joueur):
     pokemon1 = pokemon_joueur
-    liste_pokemon = [pokemon for pokemon in liste_pokemon if pokemon != pokemon1]
+    if pokemon1.niveau == 3:
+        evolution(pokemon1)
+    for pokemon in liste_pokemon:
+        if pokemon.nom == pokemon1.nom:
+            liste_pokemon.remove(pokemon)
+            break
+
     pokemon2 = random.choice(liste_pokemon)
+
+    vie_max_joueur = pokemon1.vie
+    vie_max_ennemi = pokemon2.vie
+
     duel = Combat(pokemon1, pokemon2)
-
-    # Variables graphiques
-    screen = pygame.display.set_mode((850, 531))
-    width = screen.get_width()
-    height = screen.get_height()
-
-    background = pygame.image.load("image/image_ecran/combat.png")
-    smallfont = pygame.font.Font("police_ecriture.ttf", 20)
-
-    # Fonction affichant un texte sur une surface donnée
-    def drawText(surface, text, color, rect, font, aa=False, bkg=None):
-        rect = Rect(rect)
-        y = rect.top
-        lineSpacing = -2
-
-        # get the height of the font
-        fontHeight = font.size("police_ecriture.ttf")[1]
-
-        while text:
-            i = 1
-
-            # determine if the row of text will be outside our area
-            if y + fontHeight > rect.bottom:
-                break
-
-            # determine maximum width of line
-            while font.size(text[:i])[0] < rect.width and i < len(text):
-                i += 1
-
-            # if we've wrapped the text, then adjust the wrap to the last word      
-            if i < len(text): 
-                i = text.rfind(" ", 0, i) + 1
-
-            # render the line and blit it to the surface
-            if bkg:
-                image = font.render(text[:i], 1, color, bkg)
-                image.set_colorkey(bkg)
-            else:
-                image = font.render(text[:i], aa, color)
-
-            surface.blit(image, (rect.left, y))
-            y += fontHeight + lineSpacing
-
-            # remove the text we just blitted
-            text = text[i:]
-
-        return text
-
-    # Fonction affichant un message pendant 2 secondes
-    def afficher_infos(message):
-        pygame.draw.rect(screen, (208, 199, 124), (475, 300, 300, 200))
-        drawText(screen, message, (255, 255, 255), (500, 320, 275, 175), smallfont)
-        pygame.display.flip()
-        pygame.time.delay(2000)
-
-    def ecran_de_victoire():
-        pygame.draw.rect(screen, (0, 0, 0), (0, 0, 850, 531))
-        message_victoire = smallfont.render(f"Vous avez gagné !", True, (255, 255, 255))
-        screen.blit(message_victoire, (300, height / 2))
-        pygame.display.flip()
-        pygame.time.delay(5000)
-
-    def ecran_de_defaite():
-        pygame.draw.rect(screen, (0, 0, 0), (0, 0, 850, 531))
-        message_defaite = smallfont.render(f"Vous avez perdu...", True, (255, 255, 255))
-        screen.blit(message_defaite, (300, height / 2))
-        pygame.display.flip()
-        pygame.time.delay(5000)
 
     running = True
 
@@ -122,15 +114,17 @@ def lancer_combat(pokemon_joueur):
 
         if duel.check_vainqueur() == pokemon1:
             pokemon1.niveau += 1
+            pokemon1.vie = vie_max_joueur
+            pokemon2.vie = vie_max_ennemi
             ecran_de_victoire()
-            running = False
-            pygame.quit()
-            sys.exit()
+            lancer_combat(pokemon1)
+
         elif duel.check_vainqueur() == pokemon2:
+            pokemon1.vie = vie_max_joueur
+            pokemon2.vie = vie_max_ennemi
             ecran_de_defaite()
-            running = False
-            pygame.quit()
-            sys.exit()
+            menu =Menu()
+            menu.run()
 
         image_pokemon_joueur = pygame.image.load(f"image/image_pokedex/pokemon/{pokemon1.nom}_inverse.png")
         image_pokemon_ennemi = pygame.image.load(f"image/image_pokedex/pokemon/{pokemon2.nom}.png")
@@ -188,15 +182,17 @@ def lancer_combat(pokemon_joueur):
 
             if duel.check_vainqueur() == pokemon1:
                 pokemon1.niveau += 1
+                pokemon1.vie = vie_max_joueur
+                pokemon2.vie = vie_max_ennemi
                 ecran_de_victoire()
-                running = False
-                pygame.quit()
-                sys.exit()
+                lancer_combat(pokemon1)
+
             elif duel.check_vainqueur() == pokemon2:
+                pokemon1.vie = vie_max_joueur
+                pokemon2.vie = vie_max_ennemi
                 ecran_de_defaite()
-                running = False
-                pygame.quit()
-                sys.exit()
+                menu =Menu()
+                menu.run()
 
             # L'ennemi choisit une attaque aléatoire
             moves = [pokemon2.move1, pokemon2.move2]
@@ -262,3 +258,63 @@ def lancer_combat(pokemon_joueur):
 
         # Mettre à jour l'écran
         pygame.display.flip()
+        
+# Fonction affichant un texte sur une surface donnée
+def drawText(surface, text, color, rect, font, aa=False, bkg=None):
+    rect = Rect(rect)
+    y = rect.top
+    lineSpacing = -2
+
+    # get the height of the font
+    fontHeight = font.size("police_ecriture.ttf")[1]
+
+    while text:
+        i = 1
+
+        # determine if the row of text will be outside our area
+        if y + fontHeight > rect.bottom:
+            break
+
+        # determine maximum width of line
+        while font.size(text[:i])[0] < rect.width and i < len(text):
+            i += 1
+
+        # if we've wrapped the text, then adjust the wrap to the last word      
+        if i < len(text): 
+            i = text.rfind(" ", 0, i) + 1
+
+        # render the line and blit it to the surface
+        if bkg:
+            image = font.render(text[:i], 1, color, bkg)
+            image.set_colorkey(bkg)
+        else:
+            image = font.render(text[:i], aa, color)
+
+        surface.blit(image, (rect.left, y))
+        y += fontHeight + lineSpacing
+
+        # remove the text we just blitted
+        text = text[i:]
+
+    return text
+
+# Fonction affichant un message pendant 2 secondes
+def afficher_infos(message):
+    pygame.draw.rect(screen, (208, 199, 124), (475, 300, 300, 200))
+    drawText(screen, message, (255, 255, 255), (500, 320, 275, 175), smallfont)
+    pygame.display.flip()
+    pygame.time.delay(2000)
+
+def ecran_de_victoire():
+    pygame.draw.rect(screen, (0, 0, 0), (0, 0, 850, 531))
+    message_victoire = smallfont.render(f"Vous avez gagné !", True, (255, 255, 255))
+    screen.blit(message_victoire, (300, height / 2))
+    pygame.display.flip()
+    pygame.time.delay(5000)
+
+def ecran_de_defaite():
+    pygame.draw.rect(screen, (0, 0, 0), (0, 0, 850, 531))
+    message_defaite = smallfont.render(f"Vous avez perdu...", True, (255, 255, 255))
+    screen.blit(message_defaite, (300, height / 2))
+    pygame.display.flip()
+    pygame.time.delay(5000)
