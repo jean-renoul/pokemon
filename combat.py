@@ -17,6 +17,8 @@ from menu import Menu
 pygame.init()
 pygame.display.set_caption("Combat de Pokemon")
 
+
+
 # Charger données pokemon
 with open("pokemon.json", "r") as read_file:
     data = json.load(read_file)
@@ -40,45 +42,7 @@ for pokemon in data[0].values():
         move2,
         pokemon["evolution"]
         )
-    liste_pokemon.append(instance)
-
-def evolution(pokemon_joueur):
-    with open("pokemon_evolution.json", "r") as read_file:
-        data = json.load(read_file)
-    
-    for pokemon in data[0].values():
-
-        move1 = moves_dict.get(pokemon["move1"])
-        move2 = moves_dict.get(pokemon["move2"])
-
-
-        instance = Pokemon(
-            pokemon["nom"],
-            pokemon["niveau"],
-            pokemon["type"],
-            pokemon["vie"],
-            pokemon["attaque"],
-            pokemon["defense"],
-            move1,
-            move2,
-            pokemon["evolution"]
-            )
-        liste_pokemon.append(instance)
-
-    for pokemon in liste_pokemon:
-        if pokemon.nom == pokemon_joueur.evolution:
-            pokemon_joueur.nom = data[0][pokemon.nom]["nom"]
-            pokemon_joueur.niveau = data[0][pokemon.nom]["niveau"]
-            pokemon_joueur.type = data[0][pokemon.nom]["type"]
-            pokemon_joueur.vie = data[0][pokemon.nom]["vie"]
-            pokemon_joueur.attaque = data[0][pokemon.nom]["attaque"]
-            pokemon_joueur.defense = data[0][pokemon.nom]["defense"]
-            pokemon_joueur.move1 = moves_dict.get(data[0][pokemon.nom]["move1"])
-            pokemon_joueur.move2 = moves_dict.get(data[0][pokemon.nom]["move2"])
-            break
-    
-    
-    
+    liste_pokemon.append(instance) 
 
 # Variables graphiques
 screen = pygame.display.set_mode((850, 531))
@@ -88,8 +52,14 @@ height = screen.get_height()
 background = pygame.image.load("image/image_ecran/combat.png")
 smallfont = pygame.font.Font("police_ecriture.ttf", 20)
 
+menu = Menu()
+
 
 def lancer_combat(pokemon_joueur):
+    pygame.mixer.init()
+    pygame.mixer.music.load('son/musique_combat.mp3')
+    pygame.mixer.music.play(-1) # -1 signifie que la musique va boucler
+
     pokemon1 = pokemon_joueur
     if pokemon1.niveau == 3:
         evolution(pokemon1)
@@ -106,7 +76,7 @@ def lancer_combat(pokemon_joueur):
     duel = Combat(pokemon1, pokemon2)
 
     running = True
-
+    
     # Boucle de jeu
     while running:
 
@@ -123,7 +93,6 @@ def lancer_combat(pokemon_joueur):
             pokemon1.vie = vie_max_joueur
             pokemon2.vie = vie_max_ennemi
             ecran_de_defaite()
-            menu =Menu()
             menu.run()
 
         image_pokemon_joueur = pygame.image.load(f"image/image_pokedex/pokemon/{pokemon1.nom}_inverse.png")
@@ -174,8 +143,7 @@ def lancer_combat(pokemon_joueur):
                     if event.pos[0] > 500 and event.pos[0] < 800 and event.pos[1] > 420 and event.pos[1] < 450:
                         print ("Vous avez fuit le combat.")
                         running = False
-                        pygame.quit()
-                        sys.exit()
+                        menu.run()
         
         # Tour de l'ennemi
         if tour_joueur == False:
@@ -191,7 +159,6 @@ def lancer_combat(pokemon_joueur):
                 pokemon1.vie = vie_max_joueur
                 pokemon2.vie = vie_max_ennemi
                 ecran_de_defaite()
-                menu =Menu()
                 menu.run()
 
             # L'ennemi choisit une attaque aléatoire
@@ -318,3 +285,44 @@ def ecran_de_defaite():
     screen.blit(message_defaite, (300, height / 2))
     pygame.display.flip()
     pygame.time.delay(5000)
+
+def evolution(pokemon_joueur):
+    pygame.draw.rect(screen, (0, 0, 0), (0, 0, 850, 531))
+    message_evolution = smallfont.render(f"{pokemon_joueur.nom} évolue en {pokemon_joueur.evolution} !", True, (255, 255, 255))
+    screen.blit(message_evolution, (width/4, height / 2))
+    pygame.display.flip()
+    pygame.time.delay(5000)
+    
+    with open("pokemon_evolution.json", "r") as read_file:
+        data = json.load(read_file)
+    
+    for pokemon in data[0].values():
+
+        move1 = moves_dict.get(pokemon["move1"])
+        move2 = moves_dict.get(pokemon["move2"])
+
+
+        instance = Pokemon(
+            pokemon["nom"],
+            pokemon["niveau"],
+            pokemon["type"],
+            pokemon["vie"],
+            pokemon["attaque"],
+            pokemon["defense"],
+            move1,
+            move2,
+            pokemon["evolution"]
+            )
+        liste_pokemon.append(instance)
+
+    for pokemon in liste_pokemon:
+        if pokemon.nom == pokemon_joueur.evolution:
+            pokemon_joueur.nom = data[0][pokemon.nom]["nom"]
+            pokemon_joueur.niveau = data[0][pokemon.nom]["niveau"]
+            pokemon_joueur.type = data[0][pokemon.nom]["type"]
+            pokemon_joueur.vie = data[0][pokemon.nom]["vie"]
+            pokemon_joueur.attaque = data[0][pokemon.nom]["attaque"]
+            pokemon_joueur.defense = data[0][pokemon.nom]["defense"]
+            pokemon_joueur.move1 = moves_dict.get(data[0][pokemon.nom]["move1"])
+            pokemon_joueur.move2 = moves_dict.get(data[0][pokemon.nom]["move2"])
+            break

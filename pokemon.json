@@ -2,7 +2,7 @@
     {
         "salameche" : {
             "nom": "Salameche",
-            "niveau": 1,
+            "niveau": 3,
             "type": "Feu",
             "vie" : 39,
             "attaque" : 52,
