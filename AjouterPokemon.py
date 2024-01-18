@@ -34,6 +34,9 @@ class AjouterPokemon:
             (600, 225, "Tortipouss", pygame.image.load("image/image_AjouterPokemon/carte_tortipouss.png"))
         ]
 
+        # Message de confirmation
+        self.message_confirmation = ""
+
         pygame.display.flip()
 
     def gerer_evenements(self):
@@ -93,14 +96,16 @@ class AjouterPokemon:
                     # Écrire les données mises à jour dans le fichier JSON
                     with open('pokedex.json', 'w') as json_file:
                         json.dump(self.data, json_file, indent=2)
-                    
-                    # Afficher le message de confirmation
-                    print(f"Le Pokémon {nouveau_pokemon['nom']} a été ajouté au Pokédex.")
+
+                    # Affecter le message de confirmation
+                    self.message_confirmation = f"Le Pokémon {nouveau_pokemon['nom']} a été ajouté au Pokédex."
                 else:
-                    # Afficher le message que le Pokémon est déjà ajouté
-                    print(f"Le Pokémon {nouveau_pokemon['nom']} a déjà été ajouté au Pokédex.")
+                    # Affecter le message que le Pokémon est déjà ajouté
+                    self.message_confirmation = f"Le Pokémon {nouveau_pokemon['nom']} a déjà été ajouté au Pokédex."
 
-
+    def afficher_message_confirmation(self):
+        texte_confirmation = self.font.render(self.message_confirmation, True, (0, 0, 0))
+        self.screen.blit(texte_confirmation, (130, 180))
 
     def choix_AjouterPokemon(self):
         # Afficher l'image de fond
@@ -121,6 +126,9 @@ class AjouterPokemon:
         # Afficher le texte
         texte = self.font.render("Cliquer sur une carte pour ajouter le Pokémon", True, (0, 0, 0))
         self.screen.blit(texte, (130, 150))
+
+        # Afficher le message de confirmation
+        self.afficher_message_confirmation()
 
         pygame.display.flip()
 
