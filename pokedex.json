@@ -1,162 +1,192 @@
 [
-    {
-        "nom": "Salameche",
-        "niveau": "1",
-        "type": "feu",
-        "vie": "39",
-        "attaque": "52",
-        "defense": "33",
-        "numero": "0004",
-        "image": "image/image_pokedex/pokemon/salameche.png"
-    },
-    {
-        "nom": "Carapuce",
-        "niveau": "1",
-        "type": "eau",
-        "vie": "44",
-        "attaque": "48",
-        "defense": "34",
-        "numero": "0007",
-        "image": "image/image_pokedex/pokemon/carapuce.png"
-    },
-    {
-        "nom": "Taupiqueur",
-        "niveau": "1",
-        "type": "sol",
-        "vie": "30",
-        "attaque": "52",
-        "defense": "35",
-        "numero": "0050",
-        "image": "image/image_pokedex/pokemon/taupiqueur.png"
-    },
-    {
-        "nom": "Saquedeneu",
-        "niveau": "1",
-        "type": "plante",
-        "vie": "65",
-        "attaque": "42",
-        "defense": "32",
-        "numero": "0114",
-        "image": "image/image_pokedex/pokemon/saquedeneu.png"
-    },
-    {
-        "nom": "Chenipan",
-        "niveau": "1",
-        "type": "insecte",
-        "vie": "45",
-        "attaque": "40",
-        "defense": "36",
-        "numero": "0010",
-        "image": "image/image_pokedex/pokemon/chenipan.png"
-    },
-    {
-        "nom": "Pikachu",
-        "niveau": "1",
-        "type": "electrique",
-        "vie": "35",
-        "attaque": "55",
-        "defense": "40",
-        "numero": "0025",
-        "image": "image/image_pokedex/pokemon/pikachu.png"
-    },
-    {
-        "nom": "Tadmorv",
-        "niveau": "1",
-        "type": "poison",
-        "vie": "60",
-        "attaque": "37",
-        "defense": "37",
-        "numero": "0088",
-        "image": "image/image_pokedex/pokemon/tadmorv.png"
-    },
-    {
-        "nom": "Abra",
-        "niveau": "1",
-        "type": "psy",
-        "vie": "33",
-        "attaque": "55",
-        "defense": "29",
-        "numero": "0063",
-        "image": "image/image_pokedex/pokemon/abra.png"
-    },
-    {
-        "nom": "Reptincel",
-        "niveau": "1",
-        "type": "feu",
-        "vie": "59",
-        "attaque": "72",
-        "defense": "53",
-        "numero": "0005",
-        "image": "image/image_pokedex/pokemon/reptincelle.png"
-    },
-    {
-        "nom": "Carabaffe",
-        "niveau": "1",
-        "type": "eau",
-        "vie": "64",
-        "attaque": "68",
-        "defense": "54",
-        "numero": "0008",
-        "image": "image/image_pokedex/pokemon/carabaffe.png"
-    },
-    {
-        "nom": "Triopiqueur",
-        "niveau": "1",
-        "type": "sol",
-        "vie": "50",
-        "attaque": "72",
-        "defense": "55",
-        "numero": "0051",
-        "image": "image/image_pokedex/pokemon/triopiqueur.png"
-    },
-    {
-        "nom": "Bouldeneu",
-        "niveau": "1",
-        "type": "plante",
-        "vie": "85",
-        "attaque": "62",
-        "defense": "52",
-        "numero": "0465",
-        "image": "image/image_pokedex/pokemon/bouldeneu.png"
-    },
-    {
-        "nom": "Chrysacier",
-        "niveau": "1",
-        "type": "insecte",
-        "vie": "65",
-        "attaque": "60",
-        "defense": "56",
-        "numero": "0011",
-        "image": "image/image_pokedex/pokemon/chrysacier.png"
-    },
-    {
-        "nom": "Raichu",
-        "niveau": "1",
-        "type": "electrique",
-        "vie": "55",
-        "attaque": "75",
-        "defense": "60",
-        "numero": "0026",
-        "image": "image/image_pokedex/pokemon/raichu.png"
-    },
-    {
-        "nom": "Grotadmorv",
-        "niveau": "1",
-        "type": "poison",
-        "vie": "80",
-        "attaque": "58",
-        "defense": "57",
-        "numero": "0089",
-        "image": "image/image_pokedex/pokemon/grotadmorv.png"
-    },
-    {
-        "nom": "Kadabra",
-        "niveau": "1",
-        "type": "psy",
-        "vie": "53",
-        "attaque": "75",
-        "defense": "59",
-        "numero": "0064",
-        "image": "image/image_pokedex/pokemon/kadabra.png"
-    }
+  {
+    "nom": "Salameche",
+    "niveau": "1",
+    "type": "feu",
+    "vie": "39",
+    "attaque": "52",
+    "defense": "33",
+    "numero": "0004",
+    "image": "image/image_pokedex/pokemon/salameche.png"
+  },
+  {
+    "nom": "Carapuce",
+    "niveau": "1",
+    "type": "eau",
+    "vie": "44",
+    "attaque": "48",
+    "defense": "34",
+    "numero": "0007",
+    "image": "image/image_pokedex/pokemon/carapuce.png"
+  },
+  {
+    "nom": "Taupiqueur",
+    "niveau": "1",
+    "type": "sol",
+    "vie": "30",
+    "attaque": "52",
+    "defense": "35",
+    "numero": "0050",
+    "image": "image/image_pokedex/pokemon/taupiqueur.png"
+  },
+  {
+    "nom": "Saquedeneu",
+    "niveau": "1",
+    "type": "plante",
+    "vie": "65",
+    "attaque": "42",
+    "defense": "32",
+    "numero": "0114",
+    "image": "image/image_pokedex/pokemon/saquedeneu.png"
+  },
+  {
+    "nom": "Chenipan",
+    "niveau": "1",
+    "type": "insecte",
+    "vie": "45",
+    "attaque": "40",
+    "defense": "36",
+    "numero": "0010",
+    "image": "image/image_pokedex/pokemon/chenipan.png"
+  },
+  {
+    "nom": "Pikachu",
+    "niveau": "1",
+    "type": "electrique",
+    "vie": "35",
+    "attaque": "55",
+    "defense": "40",
+    "numero": "0025",
+    "image": "image/image_pokedex/pokemon/pikachu.png"
+  },
+  {
+    "nom": "Tadmorv",
+    "niveau": "1",
+    "type": "poison",
+    "vie": "60",
+    "attaque": "37",
+    "defense": "37",
+    "numero": "0088",
+    "image": "image/image_pokedex/pokemon/tadmorv.png"
+  },
+  {
+    "nom": "Abra",
+    "niveau": "1",
+    "type": "psy",
+    "vie": "33",
+    "attaque": "55",
+    "defense": "29",
+    "numero": "0063",
+    "image": "image/image_pokedex/pokemon/abra.png"
+  },
+  {
+    "nom": "Reptincel",
+    "niveau": "1",
+    "type": "feu",
+    "vie": "59",
+    "attaque": "72",
+    "defense": "53",
+    "numero": "0005",
+    "image": "image/image_pokedex/pokemon/reptincelle.png"
+  },
+  {
+    "nom": "Carabaffe",
+    "niveau": "1",
+    "type": "eau",
+    "vie": "64",
+    "attaque": "68",
+    "defense": "54",
+    "numero": "0008",
+    "image": "image/image_pokedex/pokemon/carabaffe.png"
+  },
+  {
+    "nom": "Triopiqueur",
+    "niveau": "1",
+    "type": "sol",
+    "vie": "50",
+    "attaque": "72",
+    "defense": "55",
+    "numero": "0051",
+    "image": "image/image_pokedex/pokemon/triopiqueur.png"
+  },
+  {
+    "nom": "Bouldeneu",
+    "niveau": "1",
+    "type": "plante",
+    "vie": "85",
+    "attaque": "62",
+    "defense": "52",
+    "numero": "0465",
+    "image": "image/image_pokedex/pokemon/bouldeneu.png"
+  },
+  {
+    "nom": "Chrysacier",
+    "niveau": "1",
+    "type": "insecte",
+    "vie": "65",
+    "attaque": "60",
+    "defense": "56",
+    "numero": "0011",
+    "image": "image/image_pokedex/pokemon/chrysacier.png"
+  },
+  {
+    "nom": "Raichu",
+    "niveau": "1",
+    "type": "electrique",
+    "vie": "55",
+    "attaque": "75",
+    "defense": "60",
+    "numero": "0026",
+    "image": "image/image_pokedex/pokemon/raichu.png"
+  },
+  {
+    "nom": "Grotadmorv",
+    "niveau": "1",
+    "type": "poison",
+    "vie": "80",
+    "attaque": "58",
+    "defense": "57",
+    "numero": "0089",
+    "image": "image/image_pokedex/pokemon/grotadmorv.png"
+  },
+  {
+    "nom": "Kadabra",
+    "niveau": "1",
+    "type": "psy",
+    "vie": "53",
+    "attaque": "75",
+    "defense": "59",
+    "numero": "0064",
+    "image": "image/image_pokedex/pokemon/kadabra.png"
+  },
+  {
+    "nom": "Tortipouss",
+    "niveau": "1",
+    "type": "plante",
+    "vie": "55",
+    "attaque": "68",
+    "defense": "64",
+    "numero": "0387",
+    "image": "image/image_pokedex/pokemon/tortipouss.png"
+  },
+  {
+    "nom": "Lixy",
+    "niveau": "1",
+    "type": "electrik",
+    "vie": "45",
+    "attaque": "65",
+    "defense": "34",
+    "numero": "0403",
+    "image": "image/image_pokedex/pokemon/lixy.png"
+  },
+  {
+    "nom": "Psykokwak",
+    "niveau": "1",
+    "type": "eau",
+    "vie": "50",
+    "attaque": "52",
+    "defense": "48",
+    "numero": "0054",
+    "image": "image/image_pokedex/pokemon/psykokwak.png"
+  }
 ]
