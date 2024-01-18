@@ -158,35 +158,5 @@
     "defense": "59",
     "numero": "0064",
     "image": "image/image_pokedex/pokemon/kadabra.png"
-  },
-  {
-    "nom": "Tortipouss",
-    "niveau": "1",
-    "type": "plante",
-    "vie": "55",
-    "attaque": "68",
-    "defense": "64",
-    "numero": "0387",
-    "image": "image/image_pokedex/pokemon/tortipouss.png"
-  },
-  {
-    "nom": "Lixy",
-    "niveau": "1",
-    "type": "electrik",
-    "vie": "45",
-    "attaque": "65",
-    "defense": "34",
-    "numero": "0403",
-    "image": "image/image_pokedex/pokemon/lixy.png"
-  },
-  {
-    "nom": "Psykokwak",
-    "niveau": "1",
-    "type": "eau",
-    "vie": "50",
-    "attaque": "52",
-    "defense": "48",
-    "numero": "0054",
-    "image": "image/image_pokedex/pokemon/psykokwak.png"
   }
 ]
