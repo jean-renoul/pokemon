@@ -8,11 +8,7 @@ class Menu:
         logo = pygame.image.load('image/icon_pokeball.png')
         pygame.display.set_icon(logo)
 
-        self.background_menu = pygame.image.load('image/image_ecran/pokemon.png')
-
-        pygame.mixer.init()
-        pygame.mixer.music.load('son/pokemon.mp3')
-        pygame.mixer.music.play(-1)
+        self.background_menu = pygame.image.load('image/image_ecran/pokemon.png')        
 
         self.click_sound = pygame.mixer.Sound('son/son.mp3')
 
@@ -48,38 +44,41 @@ class Menu:
             self.running = False
 
     def run(self):
-            while self.running:
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        self.running = False
-                        pygame.quit()
+        pygame.mixer.init()
+        pygame.mixer.music.load('son/pokemon.mp3')
+        pygame.mixer.music.play(-1) 
+        while self.running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+                    pygame.quit()
 
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        if self.in_menu:
-                            for i, rect in enumerate(self.button_rects):
-                                if rect.collidepoint(event.pos):
-                                    self.handle_button_click(i)
-                        elif self.in_choice:
-                            choix.choix(self.screen)
-                        elif self.pokedex_instance and not self.pokedex_instance.en_menu:
-                            self.pokedex_instance.gerer_evenements()
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.in_menu:
+                        for i, rect in enumerate(self.button_rects):
+                            if rect.collidepoint(event.pos):
+                                self.handle_button_click(i)
+                    elif self.in_choice:
+                        choix.choix(self.screen)
+                    elif self.pokedex_instance and not self.pokedex_instance.en_menu:
+                        self.pokedex_instance.gerer_evenements()
 
-                if self.pokedex_instance:
-                    if self.pokedex_instance.quitter_pokedex:
-                        self.pokedex_instance = None
-                        self.in_menu = True
+            if self.pokedex_instance:
+                if self.pokedex_instance.quitter_pokedex:
+                    self.pokedex_instance = None
+                    self.in_menu = True
 
-                if self.in_menu:
-                    self.screen.blit(self.background_menu, (0, 0))
+            if self.in_menu:
+                self.screen.blit(self.background_menu, (0, 0))
 
-                    for i, rect in enumerate(self.button_rects):
-                        button_text = self.font.render(self.button_texts[i], True, self.BLACK)
-                        text_rect = button_text.get_rect(center=rect.center)
-                        self.screen.blit(button_text, text_rect)
+                for i, rect in enumerate(self.button_rects):
+                    button_text = self.font.render(self.button_texts[i], True, self.BLACK)
+                    text_rect = button_text.get_rect(center=rect.center)
+                    self.screen.blit(button_text, text_rect)
 
-                pygame.display.flip()
+            pygame.display.flip()
 
-            pygame.quit()
+        pygame.quit()
 
 import pygame
 from pokedex import Pokedex
