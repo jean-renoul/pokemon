@@ -29,6 +29,7 @@ class Menu:
         self.in_menu = True
         self.in_choice = False
         self.pokedex_instance = None
+        self.AjouterPokemon_instance = None
 
 
     def handle_button_click(self, index):
@@ -39,7 +40,8 @@ class Menu:
             bienvenue.run(self.screen)
         elif index == 1:
             self.in_menu = False
-            choix.choix(self.screen)
+            self.AjouterPokemon_instance = AjouterPokemon(self.screen)
+            self.AjouterPokemon_instance.executer()
         elif index == 2:
             self.in_menu = False
             self.pokedex_instance = Pokedex(self.screen)
@@ -59,8 +61,9 @@ class Menu:
                             for i, rect in enumerate(self.button_rects):
                                 if rect.collidepoint(event.pos):
                                     self.handle_button_click(i)
-                        elif self.in_choice:
-                            choix.choix(self.screen)
+                        elif self.AjouterPokemon_instance and not self.AjouterPokemon_instance.en_menu:
+                            self.AjouterPokemon_instance.gerer_evenements()
+                            
                         elif self.pokedex_instance and not self.pokedex_instance.en_menu:
                             self.pokedex_instance.gerer_evenements()
 
@@ -68,6 +71,11 @@ class Menu:
                     if self.pokedex_instance.quitter_pokedex:
                         self.pokedex_instance = None
                         self.in_menu = True
+
+                if self.AjouterPokemon_instance:
+                    if self.AjouterPokemon_instance.quitter_ajouter_pokemon:
+                        self.AjouterPokemon_instance = None
+                        self.in_menu = True        
 
                 if self.in_menu:
                     self.screen.blit(self.background_menu, (0, 0))
@@ -83,5 +91,5 @@ class Menu:
 
 import pygame
 from pokedex import Pokedex
-import choix
+from AjouterPokemon import AjouterPokemon
 import bienvenue
