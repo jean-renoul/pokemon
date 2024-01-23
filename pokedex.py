@@ -93,10 +93,6 @@ class Pokedex:
 
         pygame.display.flip()
 
-    def mettre_a_jour_couleurs_bouton_pokedex(self, pos_souris):
-        self.bouton_pokedex_survole = self.rectangles_bouton_pokedex.collidepoint(pos_souris)
-        self.bouton_quitter_survole = self.rectangles_bouton_quitter.collidepoint(pos_souris)
-
     def passer_au_menu(self):
         self.en_menu = True
         self.quitter_pokedex = False
@@ -110,13 +106,10 @@ class Pokedex:
                 print("Fermeture du Pokédex.")
                 sys.exit()
             elif evenement.type == pygame.MOUSEMOTION:
-                if self.en_menu:
-                    self.mettre_a_jour_couleurs_bouton_pokedex(pygame.mouse.get_pos())
+                if self.rect_retour.collidepoint(pygame.mouse.get_pos()):
+                    self.image_retour = pygame.image.load("image/image_pokedex/pokeball.png")
                 else:
-                    if self.rect_retour.collidepoint(pygame.mouse.get_pos()):
-                        self.image_retour = pygame.image.load("image/image_pokedex/pokeball.png")
-                    else:
-                        self.image_retour = pygame.image.load("image/image_pokedex/pokeball.png")
+                    self.image_retour = pygame.image.load("image/image_pokedex/pokeball.png")
             elif evenement.type == pygame.MOUSEBUTTONDOWN:
                 if evenement.button == 1:
                     if self.en_menu:
