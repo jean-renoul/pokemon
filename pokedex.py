@@ -3,13 +3,13 @@ class Pokedex:
         pygame.init()
         pygame.mixer.init()
 
-        with open("pokedex.json", "r") as fichier_json:
-            self.donnees_pokemon = json.load(fichier_json)
+        with open("pokedex.json", "r") as fichier_json: # Ouverture du fichier JSON
+            self.donnees_pokemon = json.load(fichier_json) # Chargement des données du fichier JSON
 
         pygame.display.set_caption("Pokédex")
-        self.ecran = screen
-        self.logo = pygame.image.load('image/icon_pokeball.png')
-        pygame.display.set_icon(self.logo)
+        self.ecran = screen 
+        self.logo = pygame.image.load('image/icon_pokeball.png') 
+        pygame.display.set_icon(self.logo) 
 
         self.image_fond = pygame.image.load("image/image_pokedex/pokedex.png")
 

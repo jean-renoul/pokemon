@@ -40,7 +40,9 @@ for pokemon in data[0].values():
         pokemon["defense"],
         move1,
         move2,
-        pokemon["evolution"]
+        pokemon["evolution"],
+        pokemon["numero"],
+        pokemon["image"]
         )
     liste_pokemon.append(instance) 
 
@@ -61,19 +63,22 @@ def lancer_combat(pokemon_joueur):
     pygame.mixer.music.play(-1) # -1 signifie que la musique va boucler
 
     pokemon1 = pokemon_joueur
+
     if pokemon1.niveau == 3:
         evolution(pokemon1)
+        
     for pokemon in liste_pokemon:
         if pokemon.nom == pokemon1.nom:
             liste_pokemon.remove(pokemon)
             break
 
     pokemon2 = random.choice(liste_pokemon)
-
+    
     vie_max_joueur = pokemon1.vie
     vie_max_ennemi = pokemon2.vie
 
     duel = Combat(pokemon1, pokemon2)
+    duel.ajouter_au_pokedex(pokemon1, pokemon2)
 
     running = True
     
@@ -93,6 +98,7 @@ def lancer_combat(pokemon_joueur):
             pokemon1.vie = vie_max_joueur
             pokemon2.vie = vie_max_ennemi
             ecran_de_defaite()
+            pygame.mixer.music.stop()
             menu.run()
 
         image_pokemon_joueur = pygame.image.load(f"image/image_pokedex/pokemon/{pokemon1.nom}_inverse.png")
@@ -142,6 +148,7 @@ def lancer_combat(pokemon_joueur):
                     # Bouton pour fuir le combat
                     if event.pos[0] > 500 and event.pos[0] < 800 and event.pos[1] > 420 and event.pos[1] < 450:
                         print ("Vous avez fuit le combat.")
+                        pygame.mixer.music.stop()
                         running = False
                         menu.run()
         
@@ -159,6 +166,7 @@ def lancer_combat(pokemon_joueur):
                 pokemon1.vie = vie_max_joueur
                 pokemon2.vie = vie_max_ennemi
                 ecran_de_defaite()
+                pygame.mixer.music.stop()
                 menu.run()
 
             # L'ennemi choisit une attaque aléatoire

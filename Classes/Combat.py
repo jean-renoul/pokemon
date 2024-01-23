@@ -1,4 +1,5 @@
 import random
+import json
 
 class Combat:
     def __init__(self, pokemon1, pokemon2):
@@ -110,4 +111,48 @@ class Combat:
             return self.pokemon1
         else:
             return False
+        
+    def ajouter_au_pokedex(self, pokemon1, pokemon2):
+        with open('pokedex.json', 'r') as json_file:
+            data = json.load(json_file)
+
+        pokemon_a_ajouter = {
+            "nom": pokemon1.nom,
+            "niveau": pokemon1.niveau,
+            "type": pokemon1.type,
+            "vie": pokemon1.vie,
+            "attaque": pokemon1.attaque,
+            "defense": pokemon1.defense,
+            "numero": pokemon1.numero,
+            "image": pokemon1.image,
+        }
+
+        for pokemon in data:
+            if pokemon["nom"] == pokemon_a_ajouter["nom"]:
+                data.remove(pokemon)
+                break
+
+        data.append(pokemon_a_ajouter)
+        with open('pokedex.json', 'w') as json_file:
+            json.dump(data, json_file, indent=2)    
+
+
+        pokemon_a_ajouter = {
+            "nom": pokemon2.nom,
+            "niveau": pokemon2.niveau,
+            "type": pokemon2.type,
+            "vie": pokemon2.vie,
+            "attaque": pokemon2.attaque,
+            "defense": pokemon2.defense,
+            "numero": pokemon2.numero,
+            "image": pokemon2.image,
+        }
+        for pokemon in data:
+            if pokemon["nom"] == pokemon_a_ajouter["nom"]:
+                data.remove(pokemon)
+                break
+
+        data.append(pokemon_a_ajouter)
+        with open('pokedex.json', 'w') as json_file:
+            json.dump(data, json_file, indent=2)
     
