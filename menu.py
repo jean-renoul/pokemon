@@ -38,7 +38,7 @@ class Menu:
         if index == 0:
             self.in_menu = False
             bienvenue.run(self.screen)
-        elif index == 1:
+        if index == 1:
             self.in_menu = False
             self.AjouterPokemon_instance = AjouterPokemon(self.screen)
             self.AjouterPokemon_instance.executer()

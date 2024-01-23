@@ -1,8 +1,8 @@
-
 import pygame
 import pygame.mixer
 import json
 import sys
+
 
 class AjouterPokemon:
     def __init__(self, screen):
@@ -127,19 +127,10 @@ class AjouterPokemon:
 
         pygame.display.flip()
 
-    def executer(self):
-        en_cours = True
-        while en_cours:
-            self.gerer_evenements()
-            nouveau_pokemon.choix_AjouterPokemon()
-            pygame.time.Clock().tick(60)
-    
+# Créer une instance de la classe AjouterPokemon
+nouveau_pokemon = AjouterPokemon()
 
-if __name__ == "__main__":
-    pygame.init()
-    screen = pygame.display.set_mode((850, 531))
-    nouveau_pokemon = AjouterPokemon(screen)
-    nouveau_pokemon.executer()
-
-
-from menu import *    
+# Boucle principale pour maintenir la fenêtre ouverte
+while True:
+    nouveau_pokemon.gerer_evenements()
+    nouveau_pokemon.choix_AjouterPokemon()
