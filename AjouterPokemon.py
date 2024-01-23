@@ -1,6 +1,3 @@
-import pygame
-import pygame.mixer
-import json
 import sys
 
 
@@ -63,33 +60,33 @@ class AjouterPokemon:
         if pokemon_nom == "Tortipouss":
             nouveau_pokemon = {
                 "nom": "Tortipouss",
-                "niveau": "1",
+                "niveau": 1,
                 "type": "plante",
-                "vie": "55",
-                "attaque": "68",
-                "defense": "64",
+                "vie": 55,
+                "attaque": 68,
+                "defense": 64,
                 "numero": "0387",
                 "image": "image/image_pokedex/pokemon/tortipouss.png"
             }
         elif pokemon_nom == "Lixy":
             nouveau_pokemon = {
                 "nom": "Lixy",
-                "niveau": "1",
+                "niveau": 1,
                 "type": "electrik",
-                "vie": "45",
-                "attaque": "65",
-                "defense": "34",
+                "vie": 45,
+                "attaque": 65,
+                "defense": 34,
                 "numero": "0403",
                 "image": "image/image_pokedex/pokemon/lixy.png"
             }
         elif pokemon_nom == "Psykokwak":
             nouveau_pokemon = {
                 "nom": "Psykokwak",
-                "niveau": "1",
+                "niveau": 1,
                 "type": "eau",
-                "vie": "50",
-                "attaque": "52",
-                "defense": "48",
+                "vie": 50,
+                "attaque": 52,
+                "defense": 48,
                 "numero": "0054",
                 "image": "image/image_pokedex/pokemon/psykokwak.png"
             }
@@ -127,10 +124,22 @@ class AjouterPokemon:
 
         pygame.display.flip()
 
-# Créer une instance de la classe AjouterPokemon
-nouveau_pokemon = AjouterPokemon()
+    def executer(self):
+        en_cours = True
+        while en_cours:
+            self.gerer_evenements()
+            self.choix_AjouterPokemon()  # Correction : Utilisez 'self'
+            pygame.time.Clock().tick(60)
 
-# Boucle principale pour maintenir la fenêtre ouverte
-while True:
-    nouveau_pokemon.gerer_evenements()
-    nouveau_pokemon.choix_AjouterPokemon()
+    
+
+if __name__ == "__main__":
+    pygame.init()
+    screen = pygame.display.set_mode((850, 531))
+    nouveau_pokemon = AjouterPokemon(screen)
+    nouveau_pokemon.executer()
+
+import pygame
+import pygame.mixer
+import json
+from menu import *
