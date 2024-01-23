@@ -8,7 +8,10 @@
             "attaque" : 52,
             "defense" : 35,
             "move1" : "griffe",
-            "move2" : "flammeche"
+            "move2" : "flammeche",
+            "evolution": "reptincel",
+            "numero": "0004",
+            "image": "image/image_pokedex/pokemon/salameche.png"
         },
         "carapuce" :{
             "nom": "Carapuce",
@@ -18,7 +21,10 @@
             "attaque" : 48,
             "defense" : 34,
             "move1" : "charge",
-            "move2" : "pistolet a O"
+            "move2" : "pistolet a O",
+            "evolution": "carabaffe",
+            "numero": "0007",
+            "image": "image/image_pokedex/pokemon/carapuce.png"
         },
         "taupiqueur" :{
             "nom": "Taupiqueur",
@@ -28,7 +34,10 @@
             "attaque" : 52,
             "defense" : 35,
             "move1" : "griffe",
-            "move2" : "tunnel"
+            "move2" : "tunnel",
+            "evolution": "triopiqueur",
+            "numero": "0050",
+            "image": "image/image_pokedex/pokemon/taupiqueur.png"
         },
         "saquedeneu" :{
             "nom": "Saquedeneu",
@@ -38,7 +47,10 @@
             "attaque": 42,
             "defense": 32,
             "move1": "charge",
-            "move2": "fouet lianes"
+            "move2": "fouet lianes",
+            "evolution": "bouldeneu",
+            "numero": "0114",
+            "image": "image/image_pokedex/pokemon/saquedeneu.png"
         },
         "chenipan" :{
             "nom": "Chenipan",
@@ -48,7 +60,10 @@
             "attaque": 40,
             "defense": 36,
             "move1": "charge",
-            "move2": "double dard"
+            "move2": "double dard",
+            "evolution": "chrysacier",
+            "numero": "0010",
+            "image": "image/image_pokedex/pokemon/chenipan.png"
         },
         "pikachu" :{
             "nom": "Pikachu",
@@ -58,7 +73,10 @@
             "attaque": 55,
             "defense": 40,
             "move1": "vive attaque",
-            "move2": "eclair"
+            "move2": "eclair",
+            "evolution": "raichu",
+            "numero": "0025",
+            "image": "image/image_pokedex/pokemon/pikachu.png"
         },
         "tadmorv" :{
             "nom": "Tadmorv",
@@ -68,7 +86,10 @@
             "attaque": 37,
             "defense": 37,
             "move1": "ecras'face",
-            "move2": "detritus"
+            "move2": "detritus",
+            "evolution": "grotadmorv",
+            "numero": "0088",
+            "image": "image/image_pokedex/pokemon/tadmorv.png"
         },
         "abra" :{
             "nom": "Abra",
@@ -78,7 +99,10 @@
             "attaque": 55,
             "defense": 29,
             "move1": "choc mental",
-            "move2": "charge"
+            "move2": "charge",
+            "evolution": "kadabra",
+            "numero": "0063",
+            "image": "image/image_pokedex/pokemon/abra.png"
         }
     }
 ]

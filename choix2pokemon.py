@@ -28,7 +28,10 @@ def choix2pokemon(screen):
             pokemon["attaque"],
             pokemon["defense"],
             move1,
-            move2
+            move2,
+            pokemon["evolution"],
+            pokemon["numero"],
+            pokemon["image"]
             )
         liste_pokemon.append(instance)    
 
@@ -103,27 +106,35 @@ def choix2pokemon(screen):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if pokeball1_rect.collidepoint(event.pos):
                     click_sound.play()  # Jouez le son du clic
+                    pygame.mixer.music.stop()
                     lancer_combat(liste_pokemon[5])
                 if pokeball2_rect.collidepoint(event.pos):
                     click_sound.play()
+                    pygame.mixer.music.stop()
                     lancer_combat(liste_pokemon[1])
                 if pokeball3_rect.collidepoint(event.pos):
                     click_sound.play()
+                    pygame.mixer.music.stop()
                     lancer_combat(liste_pokemon[2])
                 if pokeball4_rect.collidepoint(event.pos):
                     click_sound.play()
+                    pygame.mixer.music.stop()
                     lancer_combat(liste_pokemon[6])
                 if pokeball5_rect.collidepoint(event.pos):
                     click_sound.play()
+                    pygame.mixer.music.stop()
                     lancer_combat(liste_pokemon[3])
                 if pokeball6_rect.collidepoint(event.pos):
                     click_sound.play()
+                    pygame.mixer.music.stop()
                     lancer_combat(liste_pokemon[7])
                 if pokeball7_rect.collidepoint(event.pos):
                     click_sound.play()
+                    pygame.mixer.music.stop()
                     lancer_combat(liste_pokemon[0])
                 if pokeball8_rect.collidepoint(event.pos):
                     click_sound.play()
+                    pygame.mixer.music.stop()
                     lancer_combat(liste_pokemon[4])
 
 
