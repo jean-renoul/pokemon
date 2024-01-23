@@ -45,47 +45,51 @@ class AjouterPokemon:
                 print("Fermeture du jeu")
                 sys.exit()
             elif evenement.type == pygame.MOUSEBUTTONDOWN:
-                if evenement.button == 1:  # Clic gauche
-                    self.ajouter_pokemon()
+                if evenement.button == 1:
+                    for x, y, pokemon_nom, carte in self.cartes:
+                        rect_carte = pygame.Rect(x, y, carte.get_width(), carte.get_height())
+                        if rect_carte.collidepoint(pygame.mouse.get_pos()):
+                            self.ajouter_pokemon(pokemon_nom)
+                            self.en_menu = True
+                            self.quitter_ajouter_pokemon = False
+                            self.bouton_quitter_presse = True
+                            menu = Menu()
+                            menu.run()
 
-    def ajouter_pokemon(self):
-        for x, y, pokemon_nom, carte in self.cartes:
-            rect_carte = pygame.Rect(x, y, carte.get_width(), carte.get_height())
-            if rect_carte.collidepoint(pygame.mouse.get_pos()):
-                # Sélectionner le bon Pokémon en fonction du nom
-                if pokemon_nom == "Tortipouss":
-                    nouveau_pokemon = {
-                        "nom": "Tortipouss",
-                        "niveau": "1",
-                        "type": "plante",
-                        "vie": "55",
-                        "attaque": "68",
-                        "defense": "64",
-                        "numero": "0387",
-                        "image": "image/image_pokedex/pokemon/tortipouss.png"
-                    }
-                elif pokemon_nom == "Lixy":
-                    nouveau_pokemon = {
-                        "nom": "Lixy",
-                        "niveau": "1",
-                        "type": "electrik",
-                        "vie": "45",
-                        "attaque": "65",
-                        "defense": "34",
-                        "numero": "0403",
-                        "image": "image/image_pokedex/pokemon/lixy.png"
-                    }
-                elif pokemon_nom == "Psykokwak":
-                    nouveau_pokemon = {
-                        "nom": "Psykokwak",
-                        "niveau": "1",
-                        "type": "eau",
-                        "vie": "50",
-                        "attaque": "52",
-                        "defense": "48",
-                        "numero": "0054",
-                        "image": "image/image_pokedex/pokemon/psykokwak.png"
-                    }
+    def ajouter_pokemon(self, pokemon_nom):
+        if pokemon_nom == "Tortipouss":
+            nouveau_pokemon = {
+                "nom": "Tortipouss",
+                "niveau": 1,
+                "type": "plante",
+                "vie": 55,
+                "attaque": 68,
+                "defense": 64,
+                "numero": "0387",
+                "image": "image/image_pokedex/pokemon/tortipouss.png"
+            }
+        elif pokemon_nom == "Lixy":
+            nouveau_pokemon = {
+                "nom": "Lixy",
+                "niveau": 1,
+                "type": "electrik",
+                "vie": 45,
+                "attaque": 65,
+                "defense": 34,
+                "numero": "0403",
+                "image": "image/image_pokedex/pokemon/lixy.png"
+            }
+        elif pokemon_nom == "Psykokwak":
+            nouveau_pokemon = {
+                "nom": "Psykokwak",
+                "niveau": 1,
+                "type": "eau",
+                "vie": 50,
+                "attaque": 52,
+                "defense": 48,
+                "numero": "0054",
+                "image": "image/image_pokedex/pokemon/psykokwak.png"
+            }
 
         if not any(pokemon["nom"] == nouveau_pokemon["nom"] for pokemon in self.data):
             self.data.append(nouveau_pokemon)
