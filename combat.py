@@ -305,7 +305,7 @@ def evolution(pokemon_joueur):
     with open("pokemon_evolution.json", "r") as read_file:
         data = json.load(read_file)
     
-    for pokemon in data[0].values():
+    for pokemon in data:
 
         move1 = moves_dict.get(pokemon["move1"])
         move2 = moves_dict.get(pokemon["move2"])
@@ -320,19 +320,24 @@ def evolution(pokemon_joueur):
             pokemon["defense"],
             move1,
             move2,
-            pokemon["evolution"]
+            pokemon["evolution"],
+            pokemon["numero"],
+            pokemon["image"]
             )
         liste_pokemon.append(instance)
 
     for pokemon in liste_pokemon:
         if pokemon.nom == pokemon_joueur.evolution:
-            pokemon_joueur.nom = data[0][pokemon.nom]["nom"]
-            pokemon_joueur.niveau = data[0][pokemon.nom]["niveau"]
-            pokemon_joueur.type = data[0][pokemon.nom]["type"]
-            pokemon_joueur.vie = data[0][pokemon.nom]["vie"]
-            pokemon_joueur.attaque = data[0][pokemon.nom]["attaque"]
-            pokemon_joueur.defense = data[0][pokemon.nom]["defense"]
-            pokemon_joueur.move1 = moves_dict.get(data[0][pokemon.nom]["move1"])
-            pokemon_joueur.move2 = moves_dict.get(data[0][pokemon.nom]["move2"])
+            pokemon_joueur.nom = pokemon.nom
+            pokemon_joueur.niveau = pokemon.niveau
+            pokemon_joueur.type = pokemon.type
+            pokemon_joueur.vie = pokemon.vie
+            pokemon_joueur.attaque = pokemon.attaque
+            pokemon_joueur.defense = pokemon.defense
+            pokemon_joueur.move1 = pokemon.move1
+            pokemon_joueur.move2 = pokemon.move2
+            pokemon_joueur.evolution = pokemon.evolution
+            pokemon_joueur.numero = pokemon.numero
+            pokemon_joueur.image = pokemon.image
             break
 
