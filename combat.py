@@ -25,7 +25,7 @@ with open("pokemon.json", "r") as read_file:
 
 liste_pokemon = []
 
-for pokemon in data[0].values():
+for pokemon in data:
 
     move1 = moves_dict.get(pokemon["move1"])
     move2 = moves_dict.get(pokemon["move2"])
@@ -81,11 +81,10 @@ def lancer_combat(pokemon_joueur):
     duel.ajouter_au_pokedex(pokemon1, pokemon2)
 
     running = True
+    tour_joueur = True
     
     # Boucle de jeu
     while running:
-
-        tour_joueur = True
 
         if duel.check_vainqueur() == pokemon1:
             pokemon1.niveau += 1
@@ -114,12 +113,11 @@ def lancer_combat(pokemon_joueur):
                 pygame.quit()
 
         # Si l'utilisateur clique sur un bouton
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if tour_joueur and event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    
                     # Effectue l'attaque choisie par le joueur et affiche les dégats ainsi que l'efficacité de l'attaque
-                    if event.pos[0] > 500 and event.pos[0] < 800 and event.pos[1] > 320 and event.pos[1] < 350:
-                        tour_joueur = False
+                    if event.pos[0] > 500 and event.pos[0] < 800 and event.pos[1] > 320 and event.pos[1] < 350:                        
+                        tour_joueur = False                       
 
                         afficher_infos(f"{pokemon1.nom} attaque {pokemon2.nom} avec {pokemon1.move1.nom} !")
                         degats = duel.attack(pokemon1, pokemon2, pokemon1.move1)
@@ -134,9 +132,10 @@ def lancer_combat(pokemon_joueur):
                         
                     if event.pos[0] > 500 and event.pos[0] < 800 and event.pos[1] > 370 and event.pos[1] < 400:
                         tour_joueur = False
-                        afficher_infos(f"{pokemon1.nom} attaque {pokemon2.nom} avec {pokemon1.move2.nom} !")
 
+                        afficher_infos(f"{pokemon1.nom} attaque {pokemon2.nom} avec {pokemon1.move2.nom} !")
                         degats = duel.attack(pokemon1, pokemon2, pokemon1.move2)
+
                         if duel.calculer_modifier(pokemon1, pokemon2, pokemon1.move2) == 2:
                             afficher_infos(f"C'est super efficace !")
                         elif duel.calculer_modifier(pokemon1, pokemon2, pokemon1.move2) == 0.5:
@@ -150,10 +149,10 @@ def lancer_combat(pokemon_joueur):
                         print ("Vous avez fuit le combat.")
                         pygame.mixer.music.stop()
                         running = False
-                        menu.run()
+                        exec(open("main.py").read())
         
         # Tour de l'ennemi
-        if tour_joueur == False:
+        if not tour_joueur:
 
             if duel.check_vainqueur() == pokemon1:
                 pokemon1.niveau += 1
@@ -191,6 +190,7 @@ def lancer_combat(pokemon_joueur):
             duel.check_vainqueur()
 
             tour_joueur = True
+            pygame.event.clear() # Permet de ne pas prendre en compte les clics de l'utilisateur pendant le tour de l'ennemi et l'affichage des informations
 
         # Effet de hover sur les boutons
         mouse = pygame.mouse.get_pos()
@@ -219,12 +219,12 @@ def lancer_combat(pokemon_joueur):
         screen.blit(info_pokemon_joueur, (80, 475))
 
         # Appliquer l'image et les infos du pokemon de l'ennemi
-        screen.blit(image_pokemon_ennemi, (500, 70))    
+        screen.blit(image_pokemon_ennemi, (525, 100))    
         pygame.draw.rect(screen, (208, 199, 124), (475, 10, 370, 50))
         screen.blit(info_pokemon_ennemi, (500, 20))
 
         #Appliquer les boutons
-        pygame.draw.rect(screen, (208, 199, 124), (475, 300, 300, 200))
+        pygame.draw.rect(screen, (208, 199, 124), (475, 300, 350, 200))
         if tour_joueur == True:  
             screen.blit(attaque1, (500, 320))
             screen.blit(attaque2, (500, 370))
@@ -233,7 +233,8 @@ def lancer_combat(pokemon_joueur):
 
         # Mettre à jour l'écran
         pygame.display.flip()
-        
+
+       
 # Fonction affichant un texte sur une surface donnée
 def drawText(surface, text, color, rect, font, aa=False, bkg=None):
     rect = Rect(rect)
@@ -275,7 +276,7 @@ def drawText(surface, text, color, rect, font, aa=False, bkg=None):
 
 # Fonction affichant un message pendant 2 secondes
 def afficher_infos(message):
-    pygame.draw.rect(screen, (208, 199, 124), (475, 300, 300, 200))
+    pygame.draw.rect(screen, (208, 199, 124), (475, 300, 350, 200))
     drawText(screen, message, (255, 255, 255), (500, 320, 275, 175), smallfont)
     pygame.display.flip()
     pygame.time.delay(2000)
@@ -334,3 +335,4 @@ def evolution(pokemon_joueur):
             pokemon_joueur.move1 = moves_dict.get(data[0][pokemon.nom]["move1"])
             pokemon_joueur.move2 = moves_dict.get(data[0][pokemon.nom]["move2"])
             break
+

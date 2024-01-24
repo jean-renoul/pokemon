@@ -14,7 +14,7 @@ def choix2pokemon(screen):
 
     liste_pokemon = []
 
-    for pokemon in data[0].values():
+    for pokemon in data:
 
         move1 = moves_dict.get(pokemon["move1"])
         move2 = moves_dict.get(pokemon["move2"])
