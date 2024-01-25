@@ -111,8 +111,6 @@ class AjouterPokemon: # Création de la classe AjouterPokemon
         texte = self.font.render("Cliquer sur une carte pour ajouter le Pokémon", True, (0, 0, 0)) # Définition du texte
         self.screen.blit(texte, (130, 150)) # Affichage du texte
 
-        #self.afficher_message_confirmation() # Affichage du message de confirmation
-
         pygame.display.flip() # Rafraîchissement de l'écran
 
     def executer(self): # Définition de la fonction executer
