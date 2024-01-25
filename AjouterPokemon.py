@@ -6,7 +6,7 @@ class AjouterPokemon:
         pygame.init()
         pygame.mixer.init()
 
-        with open('pokedex.json') as json_file:
+        with open('pokemon.json') as json_file:
             self.data = json.load(json_file)
 
         pygame.display.set_caption("Pokemon")
@@ -94,7 +94,7 @@ class AjouterPokemon:
         if not any(pokemon["nom"] == nouveau_pokemon["nom"] for pokemon in self.data):
             self.data.append(nouveau_pokemon)
 
-            with open('pokedex.json', 'w') as json_file:
+            with open('pokemon.json', 'w') as json_file:
                 json.dump(self.data, json_file, indent=2)
 
             self.message_confirmation = f"Le Pokémon {nouveau_pokemon['nom']} a été ajouté au Pokédex."
