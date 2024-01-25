@@ -61,10 +61,13 @@ class AjouterPokemon:
             nouveau_pokemon = {
                 "nom": "Tortipouss",
                 "niveau": 1,
-                "type": "plante",
+                "type": "Plante",
                 "vie": 55,
                 "attaque": 68,
                 "defense": 64,
+                "move1": "charge",
+                "move2": "feuillage",
+                "evolution": "Boskara",
                 "numero": "0387",
                 "image": "image/image_pokedex/pokemon/tortipouss.png"
             }
@@ -72,10 +75,13 @@ class AjouterPokemon:
             nouveau_pokemon = {
                 "nom": "Lixy",
                 "niveau": 1,
-                "type": "electrik",
+                "type": "Electrique",
                 "vie": 45,
                 "attaque": 65,
                 "defense": 34,
+                "move1": "vive attaque",
+                "move2": "eclair",
+                "evolution": "Luxio",
                 "numero": "0403",
                 "image": "image/image_pokedex/pokemon/lixy.png"
             }
@@ -83,10 +89,13 @@ class AjouterPokemon:
             nouveau_pokemon = {
                 "nom": "Psykokwak",
                 "niveau": 1,
-                "type": "eau",
+                "type": "Eau",
                 "vie": 50,
                 "attaque": 52,
                 "defense": 48,
+                "move1": "charge",
+                "move2": "pistolet a O",
+                "evolution": "Akwakwak",
                 "numero": "0054",
                 "image": "image/image_pokedex/pokemon/psykokwak.png"
             }
