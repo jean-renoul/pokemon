@@ -30,9 +30,9 @@ class AjouterPokemon:
         self.quitter_ajouter_pokemon = False
 
         self.cartes = [
-            (50, 225, "Lixy", pygame.image.load("image/image_AjouterPokemon/carte_lixy.png")),
-            (325, 225, "Psykokwak", pygame.image.load("image/image_AjouterPokemon/carte_psykokwak.png")),
-            (600, 225, "Tortipouss", pygame.image.load("image/image_AjouterPokemon/carte_tortipouss.png"))
+            (50, 225, "lixy", pygame.image.load("image/image_AjouterPokemon/carte_lixy.png")),
+            (325, 225, "psykokwak", pygame.image.load("image/image_AjouterPokemon/carte_psykokwak.png")),
+            (600, 225, "tortipouss", pygame.image.load("image/image_AjouterPokemon/carte_tortipouss.png"))
         ]
 
         self.message_confirmation = ""
@@ -69,9 +69,9 @@ class AjouterPokemon:
                         menu.run()
 
     def ajouter_pokemon(self, pokemon_nom):
-        if pokemon_nom == "Tortipouss":
+        if pokemon_nom == "tortipouss":
             nouveau_pokemon = {
-                "nom": "Tortipouss",
+                "nom": "tortipouss",
                 "niveau": 1,
                 "type": "Plante",
                 "vie": 55,
@@ -79,13 +79,13 @@ class AjouterPokemon:
                 "defense": 64,
                 "move1": "charge",
                 "move2": "feuillage",
-                "evolution": "Boskara",
+                "evolution": "boskara",
                 "numero": "0387",
                 "image": "image/image_pokedex/pokemon/tortipouss.png"
             }
-        elif pokemon_nom == "Lixy":
+        elif pokemon_nom == "lixy":
             nouveau_pokemon = {
-                "nom": "Lixy",
+                "nom": "lixy",
                 "niveau": 1,
                 "type": "Electrique",
                 "vie": 45,
@@ -93,13 +93,13 @@ class AjouterPokemon:
                 "defense": 34,
                 "move1": "vive attaque",
                 "move2": "eclair",
-                "evolution": "Luxio",
+                "evolution": "luxio",
                 "numero": "0403",
                 "image": "image/image_pokedex/pokemon/lixy.png"
             }
-        elif pokemon_nom == "Psykokwak":
+        elif pokemon_nom == "psykokwak":
             nouveau_pokemon = {
-                "nom": "Psykokwak",
+                "nom": "psykokwak",
                 "niveau": 1,
                 "type": "Eau",
                 "vie": 50,
@@ -107,7 +107,7 @@ class AjouterPokemon:
                 "defense": 48,
                 "move1": "charge",
                 "move2": "pistolet a O",
-                "evolution": "Akwakwak",
+                "evolution": "akwakwak",
                 "numero": "0054",
                 "image": "image/image_pokedex/pokemon/psykokwak.png"
             }
