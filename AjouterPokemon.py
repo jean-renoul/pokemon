@@ -1,4 +1,4 @@
-import sys
+import sys # Importez le module 'sys'
 
 
 class AjouterPokemon:
