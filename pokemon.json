@@ -102,5 +102,15 @@
     "evolution": "kadabra",
     "numero": "0063",
     "image": "image/image_pokedex/pokemon/abra.png"
+  },
+  {
+    "nom": "Psykokwak",
+    "niveau": 1,
+    "type": "eau",
+    "vie": 50,
+    "attaque": 52,
+    "defense": 48,
+    "numero": "0054",
+    "image": "image/image_pokedex/pokemon/psykokwak.png"
   }
 ]
