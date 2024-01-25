@@ -102,5 +102,18 @@
     "evolution": "kadabra",
     "numero": "0063",
     "image": "image/image_pokedex/pokemon/abra.png"
+  },
+  {
+    "nom": "Lixy",
+    "niveau": 1,
+    "type": "Electrique",
+    "vie": 45,
+    "attaque": 65,
+    "defense": 34,
+    "move1": "vive attaque",
+    "move2": "eclair",
+    "evolution": "Luxio",
+    "numero": "0403",
+    "image": "image/image_pokedex/pokemon/lixy.png"
   }
 ]
