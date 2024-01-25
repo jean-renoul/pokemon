@@ -1,7 +1,7 @@
 [
     {  
         "nom": "Salameche",
-        "niveau": 3,
+        "niveau": 1,
         "type": "Feu",
         "vie" : 39,
         "attaque" : 52,

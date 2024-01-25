@@ -2,6 +2,7 @@ import pygame
 import json
 from Classes.Pokemon import Pokemon
 from globals import *
+from combatLoop import lancer_combat
 
 pygame.init()
 pygame.display.set_caption("Pokemon")
@@ -47,6 +48,8 @@ def choix_pokemon():
 
     pokemon_courant = liste_pokemon[0]      
     running = True
+    pokemon1 = None
+    pokemon2 = None
 
     while running:
         # Chargement du fond d'écran        
@@ -59,7 +62,7 @@ def choix_pokemon():
                 pygame.quit() 
               
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-                    if event.pos[0] > width/2 - 300 and event.pos[0] < width/2 - 130 and event.pos[1] > height/2 - 100 and event.pos[1] < height/2 + 100:
+                    if event.pos[0] > width/2 - 300 and event.pos[0] < width/2 - 130 and event.pos[1] > height/2 - 70 and event.pos[1] < height/2 + 50:
                         if liste_pokemon.index(pokemon_courant) == 0:
                             pokemon_courant = liste_pokemon[-1]
                             afficher_pokemon_courant(pokemon_courant)                           
@@ -69,13 +72,26 @@ def choix_pokemon():
                     
                         
 
-                    if event.pos[0] > width/2 + 100 and event.pos[0] < width/2 + 275 and event.pos[1] > height/2 - 100 and event.pos[1] < height/2 + 100:
+                    if event.pos[0] > width/2 + 100 and event.pos[0] < width/2 + 275 and event.pos[1] > height/2 - 70 and event.pos[1] < height/2 + 50:
                         if liste_pokemon.index(pokemon_courant) == len(liste_pokemon) - 1:
                             pokemon_courant = liste_pokemon[0]
                             afficher_pokemon_courant(pokemon_courant)                        
                         else:
                             pokemon_courant = liste_pokemon[liste_pokemon.index(pokemon_courant) + 1]
                             afficher_pokemon_courant(pokemon_courant)
+                    
+                    if event.pos[0] > width/2 - 100 and event.pos[0] < width/2 + 40 and event.pos[1] > height/2 - 100 and event.pos[1] < height/2 + 40:
+                        if pokemon1 == None:                            
+                            pokemon1 = pokemon_courant
+                            liste_pokemon.remove(pokemon_courant)
+                            pokemon_courant = liste_pokemon[0]
+                            break
+                        if pokemon2 == None:
+                            pokemon2 = pokemon_courant
+                            liste_pokemon.remove(pokemon_courant)
+                            lancer_combat(pokemon1, pokemon2)
+
+                        
 
                     
 
@@ -88,5 +104,3 @@ def afficher_pokemon_courant(pokemon_courant):
     fleche_droite = pygame.image.load('image/image_ecran/fleche_droite.png')
     screen.blit(fleche_gauche, (width/2 - 300, height/2 - 90))
     screen.blit(fleche_droite, (width/2 + 100, height/2 - 100))
-
-choix_pokemon()

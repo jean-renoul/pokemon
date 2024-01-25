@@ -1,3 +1,4 @@
+#fichier de classe obsolète qui permettait de faire combattre deux pokemons, remplacé par Combat.py
 import random
 import json
 
@@ -104,27 +105,27 @@ class Combat:
         print (f"{pokemon2.nom} a maintenant {pokemon2.vie} points de vie.")
         return degats
 
-    def check_vainqueur(self, pokemon3, pokemon4):
-        if self.pokemon1.vie <= 0 and self.pokemon2.vie <= 0:
-            return "défaite"
-        elif pokemon3.vie <= 0 and pokemon4.vie <= 0:
-            return "victoire"
+    def check_vainqueur(self):
+        if self.pokemon1.vie <= 0:
+            return self.pokemon2
+        elif self.pokemon2.vie <= 0:
+            return self.pokemon1
         else:
             return False
         
-    def ajouter_au_pokedex(self, pokemon):
+    def ajouter_au_pokedex(self, pokemon1, pokemon2):
         with open('pokedex.json', 'r') as json_file:
             data = json.load(json_file)
 
         pokemon_a_ajouter = {
-            "nom": pokemon.nom,
-            "niveau": pokemon.niveau,
-            "type": pokemon.type,
-            "vie": pokemon.vie,
-            "attaque": pokemon.attaque,
-            "defense": pokemon.defense,
-            "numero": pokemon.numero,
-            "image": pokemon.image,
+            "nom": pokemon1.nom,
+            "niveau": pokemon1.niveau,
+            "type": pokemon1.type,
+            "vie": pokemon1.vie,
+            "attaque": pokemon1.attaque,
+            "defense": pokemon1.defense,
+            "numero": pokemon1.numero,
+            "image": pokemon1.image,
         }
 
         for pokemon in data:
@@ -134,16 +135,25 @@ class Combat:
 
         data.append(pokemon_a_ajouter)
         with open('pokedex.json', 'w') as json_file:
-            json.dump(data, json_file, indent=2)
+            json.dump(data, json_file, indent=2)    
 
-    def vider_pokedex(self):
-        with open('pokedex.json', 'r') as json_file:
-            data = json.load(json_file)
 
-        starters = []
+        pokemon_a_ajouter = {
+            "nom": pokemon2.nom,
+            "niveau": pokemon2.niveau,
+            "type": pokemon2.type,
+            "vie": pokemon2.vie,
+            "attaque": pokemon2.attaque,
+            "defense": pokemon2.defense,
+            "numero": pokemon2.numero,
+            "image": pokemon2.image,
+        }
         for pokemon in data:
-            if pokemon["nom"]  == "Pikachu" or pokemon["nom"]  == "Carapuce" or pokemon["nom"]  == "Salameche":
-                starters.append(pokemon)
+            if pokemon["nom"] == pokemon_a_ajouter["nom"]:
+                data.remove(pokemon)
+                break
 
+        data.append(pokemon_a_ajouter)
         with open('pokedex.json', 'w') as json_file:
-            json.dump(starters, json_file, indent=2)
+            json.dump(data, json_file, indent=2)
+    

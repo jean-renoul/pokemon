@@ -1,13 +1,13 @@
 [
   {
-    "nom": "Pikachu",
+    "nom": "Salameche",
     "niveau": 1,
-    "type": "Electrique",
-    "vie": 35,
-    "attaque": 55,
-    "defense": 40,
-    "numero": "0025",
-    "image": "image/image_pokedex/pokemon/pikachu.png"
+    "type": "Feu",
+    "vie": 39,
+    "attaque": 52,
+    "defense": 35,
+    "numero": "0004",
+    "image": "image/image_pokedex/pokemon/salameche.png"
   },
   {
     "nom": "Carapuce",
@@ -20,13 +20,13 @@
     "image": "image/image_pokedex/pokemon/carapuce.png"
   },
   {
-    "nom": "Salameche",
+    "nom": "Pikachu",
     "niveau": 1,
-    "type": "Feu",
-    "vie": 39,
-    "attaque": 52,
-    "defense": 35,
-    "numero": "0004",
-    "image": "image/image_pokedex/pokemon/salameche.png"
+    "type": "Electrique",
+    "vie": 35,
+    "attaque": 55,
+    "defense": 40,
+    "numero": "0025",
+    "image": "image/image_pokedex/pokemon/pikachu.png"
   }
 ]

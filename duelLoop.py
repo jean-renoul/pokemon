@@ -1,13 +1,14 @@
+#fichier obsolète qui traitait le combat 1vs1, remplacé par combatLoop.py
 import sys
 sys.path.append("Classes")
-from Classes.Combat import Combat
+from Classes.Combat1vs1 import Combat
 from Classes.Pokemon import Pokemon
 from globals import *
 import random
 import pygame
 from pygame.locals import *
 import json
-from choix2pokemon import *
+# from choix2pokemon import *
 from menu import Menu
 
 

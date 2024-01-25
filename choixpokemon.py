@@ -1,5 +1,6 @@
 import pygame
-import choix2pokemon  # Importer le module choix
+#import choix2pokemon  # Importer le module choix
+from selection_pokemon import *
 
 def choixpokemon(screen):
     pygame.init()
@@ -26,5 +27,5 @@ def choixpokemon(screen):
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if button_rect.collidepoint(event.pos):
                    click_sound.play()  # Jouez le son du clic
-                   choix2pokemon.choix2pokemon(screen)
+                   choix_pokemon()
                    return

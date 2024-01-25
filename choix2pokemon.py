@@ -1,8 +1,9 @@
+#fichier obsolète qui permettait de choisir son pokemon pour le 1vs1, remplacé par selection_pokemon.py
 import pygame
 import json
 from Classes.Pokemon import Pokemon
 from globals import *
-from combat import lancer_combat
+from duelLoop import lancer_combat
 
 def choix2pokemon(screen):
     pygame.init()
