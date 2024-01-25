@@ -15,6 +15,10 @@ eclair = Moves("Eclair", "Electrique", 40)
 ecras_face = Moves("Ecras'Face", "Normal", 40)
 detritus = Moves("Detritus", "Poison", 40)
 choc_mental = Moves("Choc Mental", "Psy", 40)
+feuillage = Moves("Feuillage", "Plante", 40)
+mimi_queue = Moves("Mimi-Queue", "Normal", 50)
+ecume = Moves("Ecume", "Eau", 40)
+crocs_eclair = Moves("Crocs Eclair", "Electrique", 40)
 
 moves_dict = {
     "griffe": griffe,
@@ -28,7 +32,11 @@ moves_dict = {
     "eclair": eclair,
     "ecras'face": ecras_face,
     "detritus": detritus,
-    "choc mental": choc_mental
+    "choc mental": choc_mental,
+    "feuillage": feuillage,
+    "mimi-queue": mimi_queue,
+    "ecume": ecume,
+    "crocs eclair": crocs_eclair
 }
 
 #Pokemons starters

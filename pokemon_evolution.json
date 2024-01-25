@@ -102,5 +102,39 @@
         "evolution": " ",
         "numero": "0163",
         "image" : "image/image_pokedex/pokemon/kadabra.png"
+    },
+    {
+        "nom" : "luxio",
+        "niveau" : 4,
+        "type" : "Electrique",
+        "vie" : 65,
+        "attaque" : 85,
+        "defense" : 54,
+        "move1" : "vive attaque",
+        "move2" : "Crocs Éclair",
+        "evolution": " "
+    },
+    {
+        "nom" : "akwakwak",
+        "niveau" : 4,
+        "type" : "Eau",
+        "vie" : 70,
+        "attaque" : 72,
+        "defense" : 68,
+        "move1" : "écume",
+        "move2" : "mimi-queue",
+        "evolution": " "
+    },
+    {
+        "nom" : "boskara",
+        "niveau" : 4,
+        "type" : "Plante",
+        "vie" : 75,
+        "attaque" : 88,
+        "defense" : 84,
+        "move1" : "charge",
+        "move2" : "Feuillage",
+        "evolution": " "
     }
+
 ]

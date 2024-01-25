@@ -1,6 +1,12 @@
 import sys
 
 
+import sys
+import pygame
+import pygame.mixer
+import json
+from menu import Menu
+
 class AjouterPokemon:
     def __init__(self, screen):
         pygame.init()
@@ -31,9 +37,12 @@ class AjouterPokemon:
 
         self.message_confirmation = ""
 
+        self.image_fleche = pygame.image.load("image/fleches.png")
+        self.rect_fleche = self.image_fleche.get_rect(topright=(800, 0))
+
         pygame.display.flip()
 
-    def passer_au_menu(self):    
+    def passer_au_menu(self):
         self.en_menu = True
         self.quitter_ajouter_pokemon = False
         self.bouton_quitter_presse = True
@@ -42,7 +51,6 @@ class AjouterPokemon:
         for evenement in pygame.event.get():
             if evenement.type == pygame.QUIT:
                 pygame.quit()
-                print("Fermeture du jeu")
                 sys.exit()
             elif evenement.type == pygame.MOUSEBUTTONDOWN:
                 if evenement.button == 1:
@@ -50,21 +58,28 @@ class AjouterPokemon:
                         rect_carte = pygame.Rect(x, y, carte.get_width(), carte.get_height())
                         if rect_carte.collidepoint(pygame.mouse.get_pos()):
                             self.ajouter_pokemon(pokemon_nom)
-                            self.en_menu = True
-                            self.quitter_ajouter_pokemon = False
-                            self.bouton_quitter_presse = True
+                            self.passer_au_menu()
                             menu = Menu()
                             menu.run()
+
+                    # Vérifier si le clic est sur la flèche
+                    if self.rect_fleche.collidepoint(evenement.pos):
+                        self.passer_au_menu()
+                        menu = Menu()
+                        menu.run()
 
     def ajouter_pokemon(self, pokemon_nom):
         if pokemon_nom == "Tortipouss":
             nouveau_pokemon = {
                 "nom": "Tortipouss",
                 "niveau": 1,
-                "type": "plante",
+                "type": "Plante",
                 "vie": 55,
                 "attaque": 68,
                 "defense": 64,
+                "move1": "charge",
+                "move2": "feuillage",
+                "evolution": "Boskara",
                 "numero": "0387",
                 "image": "image/image_pokedex/pokemon/tortipouss.png"
             }
@@ -72,10 +87,13 @@ class AjouterPokemon:
             nouveau_pokemon = {
                 "nom": "Lixy",
                 "niveau": 1,
-                "type": "electrik",
+                "type": "Electrique",
                 "vie": 45,
                 "attaque": 65,
                 "defense": 34,
+                "move1": "vive attaque",
+                "move2": "eclair",
+                "evolution": "Luxio",
                 "numero": "0403",
                 "image": "image/image_pokedex/pokemon/lixy.png"
             }
@@ -83,10 +101,13 @@ class AjouterPokemon:
             nouveau_pokemon = {
                 "nom": "Psykokwak",
                 "niveau": 1,
-                "type": "eau",
+                "type": "Eau",
                 "vie": 50,
                 "attaque": 52,
                 "defense": 48,
+                "move1": "charge",
+                "move2": "pistolet a O",
+                "evolution": "Akwakwak",
                 "numero": "0054",
                 "image": "image/image_pokedex/pokemon/psykokwak.png"
             }
@@ -96,14 +117,6 @@ class AjouterPokemon:
 
             with open('pokemon.json', 'w') as json_file:
                 json.dump(self.data, json_file, indent=2)
-
-            self.message_confirmation = f"Le Pokémon {nouveau_pokemon['nom']} a été ajouté au Pokédex."
-        else:
-            self.message_confirmation = f"Le Pokémon {nouveau_pokemon['nom']} a déjà été ajouté au Pokédex."
-
-    def afficher_message_confirmation(self):
-        texte_confirmation = self.font.render(self.message_confirmation, True, (0, 0, 0))
-        self.screen.blit(texte_confirmation, (130, 180))
 
     def choix_AjouterPokemon(self):
         self.screen.blit(self.image_fond, (0, 0))
@@ -120,7 +133,8 @@ class AjouterPokemon:
         texte = self.font.render("Cliquer sur une carte pour ajouter le Pokémon", True, (0, 0, 0))
         self.screen.blit(texte, (130, 150))
 
-        self.afficher_message_confirmation()
+        # Afficher la flèche
+        self.screen.blit(self.image_fleche, self.rect_fleche)
 
         pygame.display.flip()
 
@@ -128,16 +142,16 @@ class AjouterPokemon:
         en_cours = True
         while en_cours:
             self.gerer_evenements()
-            self.choix_AjouterPokemon()  # Correction : Utilisez 'self'
+            self.choix_AjouterPokemon()
             pygame.time.Clock().tick(60)
-
-    
 
 if __name__ == "__main__":
     pygame.init()
     screen = pygame.display.set_mode((850, 531))
     nouveau_pokemon = AjouterPokemon(screen)
     nouveau_pokemon.executer()
+
+
 
 import pygame
 import pygame.mixer
