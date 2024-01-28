@@ -99,6 +99,7 @@ class Pokedex: # Création de la classe Pokedex
     def gerer_evenements(self): # Définition de la fonction gerer_evenements
         for evenement in pygame.event.get(): # Définition de la variable evenement
             if evenement.type == pygame.QUIT: # Si l'événement est de type QUIT
+                self.vider_pokedex()
                 pygame.quit() # Fermeture de Pygame
             elif evenement.type == pygame.MOUSEMOTION: # Si l'événement est de type MOUSEMOTION
                 if self.rect_retour.collidepoint(pygame.mouse.get_pos()): # Si la souris est sur le bouton retour
@@ -147,6 +148,30 @@ class Pokedex: # Création de la classe Pokedex
             self.gerer_evenements() # Gestion des événements
             pygame.time.Clock().tick(60) # Définition de la vitesse de rafraîchissement de l'écran
 
+    def vider_pokedex(self):
+        with open('pokedex.json', 'r') as json_file:
+            data = json.load(json_file)
+
+        starters = []
+        for pokemon in data:
+            if pokemon["nom"]  == "Pikachu" or pokemon["nom"]  == "Carapuce" or pokemon["nom"]  == "Salameche":
+                starters.append(pokemon)
+
+        with open('pokedex.json', 'w') as json_file:
+            json.dump(starters, json_file, indent=2)
+
+        with open('pokemon.json', 'r') as json_file:
+            data = json.load(json_file)
+
+        pokemons_base = []
+        for pokemon in data:
+            pokemons_base.append(pokemon)
+            if pokemon["nom"]  == "tortipouss" or pokemon["nom"]  == "lixy" or pokemon["nom"]  == "psykokwak":
+                pokemons_base.remove(pokemon)
+
+        with open('pokemon.json', 'w') as json_file:
+            json.dump(pokemons_base, json_file, indent=2)
+
     
 
 # Création d'une instance de la classe Pokedex et exécution du programme
@@ -160,4 +185,4 @@ import pygame
 import pygame.mixer
 import json
 import sys
-from menu import *
+from Classes.menu import *

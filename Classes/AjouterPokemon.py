@@ -1,11 +1,8 @@
 import sys
-
-
-import sys
 import pygame
 import pygame.mixer
 import json
-from menu import Menu
+from Classes.menu import Menu
 
 class AjouterPokemon:
     def __init__(self, screen):
@@ -50,6 +47,7 @@ class AjouterPokemon:
     def gerer_evenements(self):
         for evenement in pygame.event.get():
             if evenement.type == pygame.QUIT:
+                self.vider_pokedex()
                 pygame.quit()
                 sys.exit()
             elif evenement.type == pygame.MOUSEBUTTONDOWN:
@@ -145,15 +143,32 @@ class AjouterPokemon:
             self.choix_AjouterPokemon()
             pygame.time.Clock().tick(60)
 
+    def vider_pokedex(self):
+        with open('pokedex.json', 'r') as json_file:
+            data = json.load(json_file)
+
+        starters = []
+        for pokemon in data:
+            if pokemon["nom"]  == "Pikachu" or pokemon["nom"]  == "Carapuce" or pokemon["nom"]  == "Salameche":
+                starters.append(pokemon)
+
+        with open('pokedex.json', 'w') as json_file:
+            json.dump(starters, json_file, indent=2)
+
+        with open('pokemon.json', 'r') as json_file:
+            data = json.load(json_file)
+
+        pokemons_base = []
+        for pokemon in data:
+            pokemons_base.append(pokemon)
+            if pokemon["nom"]  == "tortipouss" or pokemon["nom"]  == "lixy" or pokemon["nom"]  == "psykokwak":
+                pokemons_base.remove(pokemon)
+
+        with open('pokemon.json', 'w') as json_file:
+            json.dump(pokemons_base, json_file, indent=2)
+
 if __name__ == "__main__":
     pygame.init()
     screen = pygame.display.set_mode((850, 531))
     nouveau_pokemon = AjouterPokemon(screen)
     nouveau_pokemon.executer()
-
-
-
-import pygame
-import pygame.mixer
-import json
-from menu import *

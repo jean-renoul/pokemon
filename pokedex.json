@@ -1,15 +1,5 @@
 [
   {
-    "nom": "Carapuce",
-    "niveau": 1,
-    "type": "Eau",
-    "vie": 44,
-    "attaque": 48,
-    "defense": 34,
-    "numero": "0007",
-    "image": "image/image_pokedex/pokemon/carapuce.png"
-  },
-  {
     "nom": "Pikachu",
     "niveau": 1,
     "type": "Electrique",
@@ -30,43 +20,13 @@
     "image": "image/image_pokedex/pokemon/salameche.png"
   },
   {
-    "nom": "boskara",
-    "niveau": 4,
-    "type": "Plante",
-    "vie": 75,
-    "attaque": 88,
-    "defense": 84,
-    "numero": "0166",
-    "image": "image/image_pokedex/pokemon/boskara.png"
-  },
-  {
-    "nom": "luxio",
-    "niveau": 4,
-    "type": "Electrique",
-    "vie": 65,
-    "attaque": 85,
-    "defense": 54,
-    "numero": "0164",
-    "image": "image/image_pokedex/pokemon/luxio.png"
-  },
-  {
-    "nom": "bouldeneu",
-    "niveau": 4,
-    "type": "Plante",
-    "vie": 85,
-    "attaque": 52,
-    "defense": 52,
-    "numero": "0214",
-    "image": "image/image_pokedex/pokemon/bouldeneu.png"
-  },
-  {
-    "nom": "triopiqueur",
-    "niveau": 4,
-    "type": "Sol",
-    "vie": 50,
-    "attaque": 72,
-    "defense": 55,
-    "numero": "0150",
-    "image": "image/image_pokedex/pokemon/triopiqueur.png"
+    "nom": "Carapuce",
+    "niveau": 1,
+    "type": "Eau",
+    "vie": 44,
+    "attaque": 48,
+    "defense": 34,
+    "numero": "0007",
+    "image": "image/image_pokedex/pokemon/carapuce.png"
   }
 ]

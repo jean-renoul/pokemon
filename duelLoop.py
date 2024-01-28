@@ -9,7 +9,7 @@ import pygame
 from pygame.locals import *
 import json
 # from choix2pokemon import *
-from menu import Menu
+from Classes.menu import Menu
 
 
 

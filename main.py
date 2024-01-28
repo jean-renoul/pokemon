@@ -1,6 +1,6 @@
-from menu import Menu
-from pokedex import *
-from AjouterPokemon import *
+from Classes.menu import Menu
+from Classes.pokedex import *
+from Classes.AjouterPokemon import *
 
 menu = Menu()
 menu.run()
