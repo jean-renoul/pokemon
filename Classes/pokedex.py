@@ -61,7 +61,7 @@ class Pokedex: # Création de la classe Pokedex
         image_pokemon = pygame.image.load(pokemon_courant["image"]) # Chargement de l'image du pokémon courant
         self.ecran.blit(image_pokemon, (335, 50)) # Affichage de l'image du pokémon courant
 
-        infos_texte = [
+        infos_texte = [ # Définition des informations du pokémon courant
             f"Nom: {pokemon_courant['nom']}",
             f"Niveau: {pokemon_courant['niveau']}",
             f"Type: {pokemon_courant['type']}",
@@ -71,11 +71,11 @@ class Pokedex: # Création de la classe Pokedex
             f"Numéro: {pokemon_courant['numero']}"
         ]
 
-        y_position = 320
-        for info in infos_texte:
-            texte_surface = self.police.render(info, True, (0, 0, 0))
-            self.ecran.blit(texte_surface, (300, y_position))
-            y_position += 25
+        y_position = 320 
+        for info in infos_texte: # Pour chaque information
+            texte_surface = self.police.render(info, True, (0, 0, 0)) # Définition du texte
+            self.ecran.blit(texte_surface, (300, y_position)) # Affichage du texte
+            y_position += 25 
 
         self.ecran.blit(self.image_retour, self.rect_retour.move(self.deplacement_x, self.deplacement_y).topleft) # Affichage du bouton retour
         self.rectangles_fleches = [ # Définition des rectangles des flèches
@@ -148,7 +148,7 @@ class Pokedex: # Création de la classe Pokedex
             self.gerer_evenements() # Gestion des événements
             pygame.time.Clock().tick(60) # Définition de la vitesse de rafraîchissement de l'écran
 
-    def vider_pokedex(self):
+    def vider_pokedex(self): # Méthode que l'on va lancer à chaque fois qu'on quitte le jeu, elle réinitialise le pokedex ainsi que la liste des pokemons disponibles
         with open('pokedex.json', 'r') as json_file:
             data = json.load(json_file)
 
