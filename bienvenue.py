@@ -34,25 +34,26 @@ def run(screen):
                     return
                 
 def vider_pokedex():
+    # Charger les données du Pokédex depuis le fichier JSON
     with open('pokedex.json', 'r') as json_file:
         data = json.load(json_file)
-
+    # Filtrer les Pokémon de départ et les conserver
     starters = []
     for pokemon in data:
         if pokemon["nom"]  == "Pikachu" or pokemon["nom"]  == "Carapuce" or pokemon["nom"]  == "Salameche":
             starters.append(pokemon)
-
+    # Réécrire le fichier JSON avec les Pokémon de départ uniquement
     with open('pokedex.json', 'w') as json_file:
         json.dump(starters, json_file, indent=2)
-
+    # Charger les données des autres Pokémon depuis un autre fichier JSON
     with open('pokemon.json', 'r') as json_file:
         data = json.load(json_file)
-
+    # Filtrer les Pokémon de base et les conserver
     pokemons_base = []
     for pokemon in data:
         pokemons_base.append(pokemon)
         if pokemon["nom"]  == "tortipouss" or pokemon["nom"]  == "lixy" or pokemon["nom"]  == "psykokwak":
             pokemons_base.remove(pokemon)
-
+    # Réécrire le fichier JSON avec les Pokémon de base uniquement
     with open('pokemon.json', 'w') as json_file:
         json.dump(pokemons_base, json_file, indent=2)
